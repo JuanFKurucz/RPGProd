@@ -105,3 +105,11 @@ header {
   bottom: 0px;
   background: #212531;
 }
+
+.taskinprogress {
+  background-color: rgba(0, 255, 0, 0.3);
+}
+.taskcompleted {
+  background-color: grey;
+  text-decoration-line: line-through;
+}

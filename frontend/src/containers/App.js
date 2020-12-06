@@ -40,6 +40,8 @@ const App = () => {
       name: inputTaskName,
       category: inputCategoryName || "global",
       status: inputStatus || "idle",
+      startedAt: Date.now(),
+      completedAt: null,
     });
     saveTasks(newTasks);
     toggleTaskModal();
@@ -54,7 +56,13 @@ const App = () => {
     saveTasks(newTasks);
   };
 
-  const completeTask = (id) => {};
+  const completeTask = (id) => {
+    const newTasks = [...tasks];
+    const index = newTasks.findIndex((obj) => obj.id === id);
+    newTasks[index].completedAt = Date.now();
+    newTasks[index].status = "completed";
+    saveTasks(newTasks);
+  };
 
   const changeStatusTask = (id, status) => {
     const newTasks = [...tasks];
