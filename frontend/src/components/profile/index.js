@@ -6,7 +6,7 @@ import Stats from "./Stats";
 
 const Profile = (props) => {
   return (
-    <aside class="side left">
+    <aside className="side left">
       <Player />
       <Level />
       <Budget />

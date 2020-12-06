@@ -1,19 +1,13 @@
 import React, { useState } from "react";
+import { v4 as uuidv4 } from "uuid";
+
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../assets/styles/App.css";
+
 import Profile from "../components/profile";
 import Tasks from "../components/tasks";
-
-import {
-  Button,
-  Modal,
-  ModalHeader,
-  ModalBody,
-  ModalFooter,
-  Form,
-  FormGroup,
-  Input,
-} from "reactstrap";
+import AddTask from "../components/tasks/AddTask";
+import Footer from "../components/footer";
 
 const getTasks = () => {
   let storageTasks = JSON.parse(localStorage.getItem("tasks"));
@@ -27,6 +21,7 @@ const App = () => {
   const [openProfile, setOpenProfile] = useState(true);
   const [openTaskModal, setOpenTaskModal] = useState(false);
   const [inputTaskName, setInputTaskName] = useState("");
+  const [inputCategoryName, setInputCategoryName] = useState("");
 
   const toggleProfile = () => setOpenProfile(!openProfile);
 
@@ -38,8 +33,9 @@ const App = () => {
   const addTask = () => {
     const newTasks = [...tasks];
     newTasks.push({
+      id: uuidv4(),
       name: inputTaskName,
-      category: "global",
+      category: inputCategoryName || "global",
     });
     saveTasks(newTasks);
     toggleTaskModal();
@@ -51,48 +47,26 @@ const App = () => {
 
   return (
     <>
-      <header class="header">
+      <header className="header">
         <span onClick={toggleProfile}>Close profile</span>
       </header>
-      <div class="containerWeb">
+      <div className="containerWeb">
         {openProfile && <Profile />}
-        <section class="page">
+        <section className="page">
           <Tasks taskList={tasks} />
         </section>
       </div>
       <div className="bottomNavbar">
-        <Button color="primary" size="lg" block onClick={toggleTaskModal}>
-          Add task
-        </Button>
+        <Footer toggleTaskModal={toggleTaskModal} />
       </div>
 
-      <div>
-        <Modal isOpen={openTaskModal} toggle={toggleTaskModal}>
-          <ModalHeader toggle={toggleTaskModal}>Modal title</ModalHeader>
-          <ModalBody>
-            <Form>
-              <FormGroup>
-                <Input
-                  type="email"
-                  name="email"
-                  id="exampleEmail"
-                  placeholder="Task name"
-                  value={inputTaskName}
-                  onChange={(event) => setInputTaskName(event.target.value)}
-                />
-              </FormGroup>
-            </Form>
-          </ModalBody>
-          <ModalFooter>
-            <Button color="primary" onClick={addTask}>
-              Add task
-            </Button>{" "}
-            <Button color="secondary" onClick={toggleTaskModal}>
-              Cancel
-            </Button>
-          </ModalFooter>
-        </Modal>
-      </div>
+      <AddTask
+        openTaskModal={openTaskModal}
+        toggleTaskModal={toggleTaskModal}
+        inputTaskName={inputTaskName}
+        setInputTaskName={setInputTaskName}
+        addTask={addTask}
+      />
     </>
   );
 };
