@@ -32,8 +32,9 @@ const App = () => {
 
   const addTask = () => {
     const newTasks = [...tasks];
+    const id = uuidv4();
     newTasks.push({
-      id: uuidv4(),
+      id,
       name: inputTaskName,
       category: inputCategoryName || "global",
     });
@@ -45,6 +46,13 @@ const App = () => {
     setOpenTaskModal(!openTaskModal);
   };
 
+  const deleteTask = (id) => {
+    const newTasks = tasks.filter((element) => element.id !== id);
+    saveTasks(newTasks);
+  };
+  const completeTask = (id) => {};
+  const changeStatusTask = (id, status) => {};
+
   return (
     <>
       <header className="header">
@@ -53,7 +61,12 @@ const App = () => {
       <div className="containerWeb">
         {openProfile && <Profile />}
         <section className="page">
-          <Tasks taskList={tasks} />
+          <Tasks
+            taskList={tasks}
+            deleteTask={deleteTask}
+            completeTask={completeTask}
+            changeStatusTask={changeStatusTask}
+          />
         </section>
       </div>
       <div className="bottomNavbar">

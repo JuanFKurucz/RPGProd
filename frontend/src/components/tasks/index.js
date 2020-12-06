@@ -10,6 +10,9 @@ const Tasks = (props) => {
           key={x}
           name={x}
           taskList={props.taskList.filter((y) => y.category === x)}
+          deleteTask={props.deleteTask}
+          completeTask={props.completeTask}
+          changeStatusTask={props.changeStatusTask}
         />
       ))}
     </div>
