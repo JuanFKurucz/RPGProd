@@ -2,7 +2,6 @@ import React from "react";
 import { FaPlay, FaPause, FaCheck, FaTrash } from "react-icons/fa";
 
 const Task = (props) => {
-  console.log(props);
   return (
     <div className="centerText taskComponent">
       <div className="taskItem taskName">{props.data.name}</div>

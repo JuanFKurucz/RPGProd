@@ -14,7 +14,6 @@ const getTasks = () => {
   if (!storageTasks) {
     storageTasks = [];
   }
-  console.log(storageTasks);
   return storageTasks;
 };
 
@@ -54,12 +53,13 @@ const App = () => {
     const newTasks = tasks.filter((element) => element.id !== id);
     saveTasks(newTasks);
   };
+
   const completeTask = (id) => {};
+
   const changeStatusTask = (id, status) => {
-    const task = tasks.filter((element) => element.id === id)[0];
-    task.status = status;
-    const newTasks = tasks.filter((element) => element.id !== id);
-    newTasks.push(task);
+    const newTasks = [...tasks];
+    const index = newTasks.findIndex((obj) => obj.id === id);
+    newTasks[index].status = status;
     saveTasks(newTasks);
   };
 
