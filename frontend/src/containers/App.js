@@ -9,13 +9,16 @@ import Tasks from "../components/tasks";
 import AddTask from "../components/tasks/AddTask";
 import Footer from "../components/footer";
 
-const getTasks = () => {
-  let storageTasks = JSON.parse(localStorage.getItem("tasks"));
-  if (!storageTasks) {
-    storageTasks = [];
+const getFromLocalStorage = (key) => {
+  let storage = JSON.parse(localStorage.getItem(key));
+  if (!storage) {
+    storage = [];
   }
-  return storageTasks;
+  return storage;
 };
+
+const getTasks = () => getFromLocalStorage("tasks");
+const getProfile = () => getFromLocalStorage("profile");
 
 const App = () => {
   const [tasks, setTasks] = useState(getTasks());
@@ -46,8 +49,11 @@ const App = () => {
     saveTasks(newTasks);
     toggleTaskModal();
   };
+
   const toggleTaskModal = () => {
     setInputTaskName("");
+    setInputCategoryName("");
+    setInputStatus("idle");
     setOpenTaskModal(!openTaskModal);
   };
 
@@ -97,6 +103,10 @@ const App = () => {
         inputTaskName={inputTaskName}
         setInputTaskName={setInputTaskName}
         addTask={addTask}
+        inputCategoryName={inputCategoryName}
+        setInputCategoryName={setInputCategoryName}
+        inputStatus={inputStatus}
+        setInputStatus={setInputStatus}
       />
     </>
   );

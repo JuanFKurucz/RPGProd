@@ -9,6 +9,7 @@ import {
   Form,
   FormGroup,
   Input,
+  Label,
 } from "reactstrap";
 
 const AddTask = (props) => (
@@ -17,6 +18,7 @@ const AddTask = (props) => (
     <ModalBody>
       <Form>
         <FormGroup>
+          <Label for="exampleSelect">Task</Label>
           <Input
             type="text"
             name="name"
@@ -24,6 +26,30 @@ const AddTask = (props) => (
             value={props.inputTaskName}
             onChange={(event) => props.setInputTaskName(event.target.value)}
           />
+        </FormGroup>
+        <FormGroup>
+          <Label for="exampleSelect">Category</Label>
+          <Input
+            type="text"
+            name="category"
+            placeholder="Category name"
+            value={props.inputCategoryName}
+            onChange={(event) => props.setInputCategoryName(event.target.value)}
+          />
+        </FormGroup>
+
+        <FormGroup>
+          <Label for="exampleSelect">Status</Label>
+          <Input
+            type="select"
+            name="status"
+            value={props.inputStatus}
+            onChange={(event) => props.setInputStatus(event.target.value)}
+          >
+            <option value="idle">Idle</option>
+            <option value="inprogress">In progress</option>
+            <option value="completed">Completed</option>
+          </Input>
         </FormGroup>
       </Form>
     </ModalBody>
