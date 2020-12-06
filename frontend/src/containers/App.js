@@ -1,25 +1,26 @@
-import logo from "../assets/img/logo.svg";
+import React, { useState } from "react";
 import "../assets/styles/App.css";
+import Sidebar from "../components/profile/Sidebar";
 
-function App() {
+const App = () => {
+  const [open, setOpen] = useState(true);
+
+  const toggleSidebar = (event) => {
+    setOpen(!open);
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <>
+      <header class="header">
+        <div className="icon" onClick={toggleSidebar}>
+          Close profile
+        </div>
       </header>
-    </div>
+      <div class="container">
+        {open && <Sidebar toggleSidebar={toggleSidebar} open={open} />}
+        <section class="page">main</section>
+      </div>
+    </>
   );
-}
+};
 
 export default App;
