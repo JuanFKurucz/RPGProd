@@ -14,14 +14,17 @@ const getTasks = () => {
   if (!storageTasks) {
     storageTasks = [];
   }
+  console.log(storageTasks);
   return storageTasks;
 };
+
 const App = () => {
   const [tasks, setTasks] = useState(getTasks());
   const [openProfile, setOpenProfile] = useState(true);
   const [openTaskModal, setOpenTaskModal] = useState(false);
   const [inputTaskName, setInputTaskName] = useState("");
   const [inputCategoryName, setInputCategoryName] = useState("");
+  const [inputStatus, setInputStatus] = useState("idle");
 
   const toggleProfile = () => setOpenProfile(!openProfile);
 
@@ -37,6 +40,7 @@ const App = () => {
       id,
       name: inputTaskName,
       category: inputCategoryName || "global",
+      status: inputStatus || "idle",
     });
     saveTasks(newTasks);
     toggleTaskModal();
@@ -51,7 +55,13 @@ const App = () => {
     saveTasks(newTasks);
   };
   const completeTask = (id) => {};
-  const changeStatusTask = (id, status) => {};
+  const changeStatusTask = (id, status) => {
+    const task = tasks.filter((element) => element.id === id)[0];
+    task.status = status;
+    const newTasks = tasks.filter((element) => element.id !== id);
+    newTasks.push(task);
+    saveTasks(newTasks);
+  };
 
   return (
     <>
