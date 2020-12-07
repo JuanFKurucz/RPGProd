@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 
-import "bootstrap/dist/css/bootstrap.min.css";
-import "../assets/styles/App.css";
-
 import Profile from "../components/profile";
 import Tasks from "../components/tasks";
 import AddTask from "../components/tasks/AddTask";
 import Footer from "../components/footer";
 
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+
+import { Button } from "reactstrap";
 const getFromLocalStorage = (key, defaultValue) => {
   let storage = JSON.parse(localStorage.getItem(key));
   if (!storage) {
@@ -109,23 +109,42 @@ const App = () => {
   };
 
   return (
-    <>
-      <header className="header">
-        <span onClick={toggleProfile}>Close profile</span>
-      </header>
-      <div className="containerWeb">
-        {openProfile && <Profile profile={profile} />}
-        <section className="page">
-          <Tasks
-            taskList={tasks}
-            deleteTask={deleteTask}
-            completeTask={completeTask}
-            changeStatusTask={changeStatusTask}
-          />
-        </section>
-      </div>
-      <div className="bottomNavbar">
-        <Footer toggleTaskModal={toggleTaskModal} />
+    <Router>
+      <div>
+        <header>
+          <ul>
+            <li>
+              <Link to="/">Profile</Link>
+            </li>
+            <li>
+              <Link to="/quests">Quests</Link>
+            </li>
+            <li>
+              <Link to="/proficiency">Proficiency</Link>
+            </li>
+            <li>
+              <Link to="/budget">Budget</Link>
+            </li>
+          </ul>
+        </header>
+        <div className="content">
+          <Switch>
+            <Route path="/quests">
+              <Tasks
+                taskList={tasks}
+                deleteTask={deleteTask}
+                completeTask={completeTask}
+                changeStatusTask={changeStatusTask}
+              />
+              <div className="bottomNavbar">
+                <Footer toggleTaskModal={toggleTaskModal} />
+              </div>
+            </Route>
+            <Route path="/">
+              <Profile profile={profile} />
+            </Route>
+          </Switch>
+        </div>
       </div>
 
       <AddTask
@@ -141,7 +160,7 @@ const App = () => {
         inputPriority={inputPriority}
         setInputPriority={setInputPriority}
       />
-    </>
+    </Router>
   );
 };
 
