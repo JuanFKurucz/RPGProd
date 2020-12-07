@@ -7,10 +7,10 @@ import Stats from "./Stats";
 const Profile = (props) => {
   return (
     <aside className="side left">
-      <Player />
-      <Level />
-      <Budget />
-      <Stats />
+      <Player profile={props.profile} />
+      <Level profile={props.profile} />
+      <Budget profile={props.profile} />
+      <Stats profile={props.profile} />
     </aside>
   );
 };

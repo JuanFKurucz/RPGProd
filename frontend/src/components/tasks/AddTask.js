@@ -14,11 +14,11 @@ import {
 
 const AddTask = (props) => (
   <Modal isOpen={props.openTaskModal} toggle={props.toggleTaskModal}>
-    <ModalHeader toggle={props.toggleTaskModal}>Modal title</ModalHeader>
+    <ModalHeader toggle={props.toggleTaskModal}>Add quest</ModalHeader>
     <ModalBody>
       <Form>
         <FormGroup>
-          <Label for="exampleSelect">Task</Label>
+          <Label for="exampleSelect">Quest name</Label>
           <Input
             type="text"
             name="name"
@@ -36,6 +36,19 @@ const AddTask = (props) => (
             value={props.inputCategoryName}
             onChange={(event) => props.setInputCategoryName(event.target.value)}
           />
+        </FormGroup>
+        <FormGroup>
+          <Label for="exampleSelect">Priority</Label>
+          <Input
+            type="select"
+            name="status"
+            value={props.inputPriority}
+            onChange={(event) => props.setInputPriority(event.target.value)}
+          >
+            <option value="1">Side quest</option>
+            <option value="2">Quest</option>
+            <option value="3">Boss fight</option>
+          </Input>
         </FormGroup>
 
         <FormGroup>
@@ -55,7 +68,7 @@ const AddTask = (props) => (
     </ModalBody>
     <ModalFooter>
       <Button color="primary" onClick={props.addTask}>
-        Add task
+        Add quest
       </Button>{" "}
       <Button color="secondary" onClick={props.toggleTaskModal}>
         Cancel

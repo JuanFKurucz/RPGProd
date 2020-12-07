@@ -9,30 +9,53 @@ import Tasks from "../components/tasks";
 import AddTask from "../components/tasks/AddTask";
 import Footer from "../components/footer";
 
-const getFromLocalStorage = (key) => {
+const getFromLocalStorage = (key, defaultValue) => {
   let storage = JSON.parse(localStorage.getItem(key));
   if (!storage) {
-    storage = [];
+    storage = defaultValue;
   }
   return storage;
 };
 
-const getTasks = () => getFromLocalStorage("tasks");
-const getProfile = () => getFromLocalStorage("profile");
+const saveToLocalStorage = (key, data) => {
+  localStorage.setItem(key, JSON.stringify(data));
+};
+
+const getTasks = () => getFromLocalStorage("tasks", []);
+const getProfile = () =>
+  getFromLocalStorage("profile", {
+    name: "Niekto",
+    avatar: null,
+    level: 1,
+    levelPure: 1,
+    xp: 0,
+    stats: {
+      strength: 0,
+      speed: 0,
+      intelligence: 0,
+    },
+  });
 
 const App = () => {
+  const [profile, setProfile] = useState(getProfile());
   const [tasks, setTasks] = useState(getTasks());
   const [openProfile, setOpenProfile] = useState(true);
   const [openTaskModal, setOpenTaskModal] = useState(false);
   const [inputTaskName, setInputTaskName] = useState("");
   const [inputCategoryName, setInputCategoryName] = useState("");
   const [inputStatus, setInputStatus] = useState("idle");
+  const [inputPriority, setInputPriority] = useState(1);
 
   const toggleProfile = () => setOpenProfile(!openProfile);
 
   const saveTasks = (newTasks) => {
-    localStorage.setItem("tasks", JSON.stringify(newTasks));
+    saveToLocalStorage("tasks", newTasks);
     setTasks(newTasks);
+  };
+
+  const saveProfile = (newProfile) => {
+    saveToLocalStorage("profile", newProfile);
+    setProfile(newProfile);
   };
 
   const addTask = () => {
@@ -45,6 +68,7 @@ const App = () => {
       status: inputStatus || "idle",
       startedAt: Date.now(),
       completedAt: null,
+      priority: inputPriority,
     });
     saveTasks(newTasks);
     toggleTaskModal();
@@ -54,6 +78,7 @@ const App = () => {
     setInputTaskName("");
     setInputCategoryName("");
     setInputStatus("idle");
+    setInputPriority(1);
     setOpenTaskModal(!openTaskModal);
   };
 
@@ -68,6 +93,12 @@ const App = () => {
     newTasks[index].completedAt = Date.now();
     newTasks[index].status = "completed";
     saveTasks(newTasks);
+
+    const newProfile = { ...profile };
+    newProfile.xp += Math.floor(Math.random() * 10) * newTasks[index].priority;
+    newProfile.levelPure += newProfile.xp / (120 * newProfile.level);
+    newProfile.level = Math.floor(newProfile.levelPure);
+    saveProfile(newProfile);
   };
 
   const changeStatusTask = (id, status) => {
@@ -83,7 +114,7 @@ const App = () => {
         <span onClick={toggleProfile}>Close profile</span>
       </header>
       <div className="containerWeb">
-        {openProfile && <Profile />}
+        {openProfile && <Profile profile={profile} />}
         <section className="page">
           <Tasks
             taskList={tasks}
@@ -107,6 +138,8 @@ const App = () => {
         setInputCategoryName={setInputCategoryName}
         inputStatus={inputStatus}
         setInputStatus={setInputStatus}
+        inputPriority={inputPriority}
+        setInputPriority={setInputPriority}
       />
     </>
   );
