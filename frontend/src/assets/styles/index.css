@@ -177,3 +177,7 @@ header li a:active {
 i.icon {
   height: auto;
 }
+
+.invert {
+  filter: invert(100%);
+}
