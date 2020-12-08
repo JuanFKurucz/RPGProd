@@ -4,7 +4,12 @@ import { FaPlay, FaPause, FaCheck, FaTrash } from "react-icons/fa";
 const Task = (props) => {
   return (
     <div className={"centerText taskComponent task" + props.data.status}>
-      <div className="taskItem taskName">{props.data.name}</div>
+      <div className="taskItem taskName">
+        {props.category && (
+          <span className="categoryName">{props.category}</span>
+        )}
+        {props.data.name}
+      </div>
       <div className="taskItem taskStatus">
         <FaTrash
           onClick={() => {
