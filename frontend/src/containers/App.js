@@ -7,7 +7,7 @@ import AddTask from "../components/tasks/AddTask";
 import Footer from "../components/footer";
 import Navbar from "../components/navbar";
 
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 const getFromLocalStorage = (key, defaultValue) => {
   let storage = JSON.parse(localStorage.getItem(key));

@@ -1,5 +1,5 @@
 import React from "react";
-import { FaPlay, FaPause, FaCheck, FaTrash } from "react-icons/fa";
+import { Icon } from "semantic-ui-react";
 
 const Task = (props) => {
   return (
@@ -11,7 +11,8 @@ const Task = (props) => {
         {props.data.name}
       </div>
       <div className="taskItem taskStatus">
-        <FaTrash
+        <Icon
+          name="trash"
           onClick={() => {
             props.deleteTask(props.data.id);
           }}
@@ -19,7 +20,8 @@ const Task = (props) => {
       </div>
       {props.data.status !== "completed" && (
         <div className="taskItem taskStatus">
-          <FaCheck
+          <Icon
+            name="check"
             onClick={() => {
               props.completeTask(props.data.id);
             }}
@@ -29,14 +31,16 @@ const Task = (props) => {
       {props.data.status !== "completed" && (
         <div className="taskItem taskStatus">
           {props.data.status !== "idle" && (
-            <FaPause
+            <Icon
+              name="pause"
               onClick={() => {
                 props.changeStatusTask(props.data.id, "idle");
               }}
             />
           )}
           {props.data.status === "idle" && (
-            <FaPlay
+            <Icon
+              name="play"
               onClick={() => {
                 props.changeStatusTask(props.data.id, "inprogress");
               }}

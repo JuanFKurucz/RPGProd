@@ -173,3 +173,7 @@ header li a:active {
   overflow: hidden;
   background: url("https://www.wallpaperup.com/uploads/wallpapers/2014/11/19/521086/0785a3cf7057ce4f6da88c6697ffa6da-700.jpg");
 }
+
+i.icon {
+  height: auto;
+}
