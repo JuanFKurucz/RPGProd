@@ -8,7 +8,8 @@ const prioritiesNames = {
 };
 
 const Tasks = (props) => {
-  const priorities = [...new Set(props.taskList.map((x) => x.priority))];
+  const tasks = props.taskList.filter((y) => y.status !== "completed");
+  const priorities = [...new Set(tasks.map((x) => x.priority))];
   priorities.sort((a, b) => b - a);
   return (
     <section>
@@ -17,7 +18,7 @@ const Tasks = (props) => {
           <Column
             key={x}
             name={prioritiesNames[x]}
-            taskList={props.taskList.filter((y) => y.priority === x)}
+            taskList={tasks.filter((y) => y.priority === x)}
             deleteTask={props.deleteTask}
             completeTask={props.completeTask}
             changeStatusTask={props.changeStatusTask}
