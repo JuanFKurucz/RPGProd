@@ -5,6 +5,7 @@ import Profile from "../components/profile";
 import Tasks from "../components/tasks";
 import AddTask from "../components/tasks/AddTask";
 import Footer from "../components/footer";
+import Navbar from "../components/navbar";
 
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
@@ -125,20 +126,7 @@ const App = () => {
     <Router>
       <div>
         <header>
-          <ul>
-            <li>
-              <Link to="/">Profile</Link>
-            </li>
-            <li>
-              <Link to="/quests">Quests</Link>
-            </li>
-            <li>
-              <Link to="/proficiency">Proficiency</Link>
-            </li>
-            <li>
-              <Link to="/budget">Budget</Link>
-            </li>
-          </ul>
+          <Navbar />
         </header>
         <div className="content">
           <Switch>
