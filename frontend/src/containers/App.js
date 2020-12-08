@@ -8,7 +8,6 @@ import Footer from "../components/footer";
 
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
-import { Button } from "reactstrap";
 const getFromLocalStorage = (key, defaultValue) => {
   let storage = JSON.parse(localStorage.getItem(key));
   if (!storage) {
@@ -39,14 +38,11 @@ const getProfile = () =>
 const App = () => {
   const [profile, setProfile] = useState(getProfile());
   const [tasks, setTasks] = useState(getTasks());
-  const [openProfile, setOpenProfile] = useState(true);
   const [openTaskModal, setOpenTaskModal] = useState(false);
   const [inputTaskName, setInputTaskName] = useState("");
   const [inputCategoryName, setInputCategoryName] = useState("");
   const [inputStatus, setInputStatus] = useState("idle");
   const [inputPriority, setInputPriority] = useState(1);
-
-  const toggleProfile = () => setOpenProfile(!openProfile);
 
   const saveTasks = (newTasks) => {
     saveToLocalStorage("tasks", newTasks);
@@ -139,6 +135,19 @@ const App = () => {
               <div className="bottomNavbar">
                 <Footer toggleTaskModal={toggleTaskModal} />
               </div>
+              <AddTask
+                openTaskModal={openTaskModal}
+                toggleTaskModal={toggleTaskModal}
+                inputTaskName={inputTaskName}
+                setInputTaskName={setInputTaskName}
+                addTask={addTask}
+                inputCategoryName={inputCategoryName}
+                setInputCategoryName={setInputCategoryName}
+                inputStatus={inputStatus}
+                setInputStatus={setInputStatus}
+                inputPriority={inputPriority}
+                setInputPriority={setInputPriority}
+              />
             </Route>
             <Route path="/">
               <Profile profile={profile} />
@@ -146,20 +155,6 @@ const App = () => {
           </Switch>
         </div>
       </div>
-
-      <AddTask
-        openTaskModal={openTaskModal}
-        toggleTaskModal={toggleTaskModal}
-        inputTaskName={inputTaskName}
-        setInputTaskName={setInputTaskName}
-        addTask={addTask}
-        inputCategoryName={inputCategoryName}
-        setInputCategoryName={setInputCategoryName}
-        inputStatus={inputStatus}
-        setInputStatus={setInputStatus}
-        inputPriority={inputPriority}
-        setInputPriority={setInputPriority}
-      />
     </Router>
   );
 };
