@@ -1,8 +1,8 @@
 import React from "react";
-import { Button } from "reactstrap";
+import { Button } from "semantic-ui-react";
 
 const Footer = (props) => (
-  <Button color="primary" size="lg" block onClick={props.toggleTaskModal}>
+  <Button primary onClick={props.toggleTaskModal}>
     Add quest
   </Button>
 );

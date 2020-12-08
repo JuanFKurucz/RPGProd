@@ -105,8 +105,11 @@ header {
 .bottomNavbar {
   width: 100%;
   position: fixed;
-  bottom: 0px;
+  bottom: -10px;
   background: #212531;
+}
+.bottomNavbar button {
+  width: 100%;
 }
 
 .taskinprogress {

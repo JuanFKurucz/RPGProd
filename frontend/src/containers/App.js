@@ -20,6 +20,17 @@ const saveToLocalStorage = (key, data) => {
   localStorage.setItem(key, JSON.stringify(data));
 };
 
+function modalReducer(state, action) {
+  switch (action.type) {
+    case "OPEN_MODAL":
+      return { open: true, dimmer: action.dimmer };
+    case "CLOSE_MODAL":
+      return { open: false };
+    default:
+      throw new Error();
+  }
+}
+
 const getTasks = () => getFromLocalStorage("tasks", []);
 const getProfile = () =>
   getFromLocalStorage("profile", {
@@ -38,7 +49,10 @@ const getProfile = () =>
 const App = () => {
   const [profile, setProfile] = useState(getProfile());
   const [tasks, setTasks] = useState(getTasks());
-  const [openTaskModal, setOpenTaskModal] = useState(false);
+  const [modalState, setModalState] = React.useReducer(modalReducer, {
+    open: false,
+    dimmer: undefined,
+  });
   const [inputTaskName, setInputTaskName] = useState("");
   const [inputCategoryName, setInputCategoryName] = useState("");
   const [inputStatus, setInputStatus] = useState("idle");
@@ -75,7 +89,10 @@ const App = () => {
     setInputCategoryName("");
     setInputStatus("idle");
     setInputPriority(1);
-    setOpenTaskModal(!openTaskModal);
+    setModalState({
+      type: modalState.open ? "CLOSE_MODAL" : "OPEN_MODAL",
+      dimmer: "blurring",
+    });
   };
 
   const deleteTask = (id) => {
@@ -126,17 +143,9 @@ const App = () => {
         <div className="content">
           <Switch>
             <Route path="/quests">
-              <Tasks
-                taskList={tasks}
-                deleteTask={deleteTask}
-                completeTask={completeTask}
-                changeStatusTask={changeStatusTask}
-              />
-              <div className="bottomNavbar">
-                <Footer toggleTaskModal={toggleTaskModal} />
-              </div>
               <AddTask
-                openTaskModal={openTaskModal}
+                open={modalState.open}
+                dimmer={modalState.dimmer}
                 toggleTaskModal={toggleTaskModal}
                 inputTaskName={inputTaskName}
                 setInputTaskName={setInputTaskName}
@@ -148,6 +157,15 @@ const App = () => {
                 inputPriority={inputPriority}
                 setInputPriority={setInputPriority}
               />
+              <Tasks
+                taskList={tasks}
+                deleteTask={deleteTask}
+                completeTask={completeTask}
+                changeStatusTask={changeStatusTask}
+              />
+              <div className="bottomNavbar">
+                <Footer toggleTaskModal={toggleTaskModal} />
+              </div>
             </Route>
             <Route path="/">
               <Profile profile={profile} />
