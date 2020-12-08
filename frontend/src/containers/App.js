@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
+import Markov from "../utils/markov";
+import quests from "../assets/config/quests.json";
 
 import Profile from "../components/profile";
 import Tasks from "../components/tasks";
@@ -86,7 +88,8 @@ const App = () => {
   };
 
   const toggleTaskModal = () => {
-    setInputTaskName("");
+    const taskName = new Markov(2, quests).generateSentence(7);
+    setInputTaskName(taskName);
     setInputCategoryName("");
     setInputStatus("idle");
     setInputPriority(1);

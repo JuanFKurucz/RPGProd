@@ -1,7 +1,10 @@
 import React from "react";
 
-import { Button, Modal, Form } from "semantic-ui-react";
+import { Button, Modal, Form, Image, Grid } from "semantic-ui-react";
 
+import sideQuest from "../../assets/img/two-coins.png";
+import quest from "../../assets/img/treasure-map.png";
+import bossFight from "../../assets/img/evil-minion.png";
 const AddTask = (props) => {
   return (
     <Modal
@@ -9,43 +12,47 @@ const AddTask = (props) => {
       open={props.open}
       onClose={props.toggleTaskModal}
     >
-      <Modal.Header>Add quest</Modal.Header>
+      <Modal.Header className="centerText">Add quest</Modal.Header>
       <Modal.Content>
         <Form>
           <Form.Field
-            label="Quest name"
             control="input"
-            placeholder="Category name"
+            placeholder="Quest name"
             value={props.inputTaskName}
             onChange={(event) => props.setInputTaskName(event.target.value)}
+            onFocus={(event) => event.target.select()}
           />
-          <Form.Field
-            label="Category name"
-            control="input"
-            placeholder="Category name"
-            value={props.inputCategoryName}
-            onChange={(event) => props.setInputCategoryName(event.target.value)}
-          />
-          <Form.Field
-            label="Priority"
-            control="select"
-            value={props.inputPriority}
-            onChange={(event) => props.setInputPriority(event.target.value)}
-          >
-            <option value="1">Side quest</option>
-            <option value="2">Quest</option>
-            <option value="3">Boss fight</option>
-          </Form.Field>
-          <Form.Field
-            label="Priority"
-            control="select"
-            value={props.inputStatus}
-            onChange={(event) => props.setInputStatus(event.target.value)}
-          >
-            <option value="idle">Idle</option>
-            <option value="inprogress">In progress</option>
-            <option value="completed">Completed</option>
-          </Form.Field>
+          <Grid centered columns={1} container>
+            <Grid.Row centered columns={3}>
+              <Grid.Column>
+                <Image
+                  src={sideQuest}
+                  size="tiny"
+                  onClick={() => props.setInputPriority(1)}
+                  className="invert"
+                  style={{ opacity: props.inputPriority === 1 ? 1 : 0.5 }}
+                />
+              </Grid.Column>
+              <Grid.Column>
+                <Image
+                  src={quest}
+                  size="tiny"
+                  onClick={() => props.setInputPriority(2)}
+                  className="invert"
+                  style={{ opacity: props.inputPriority === 2 ? 1 : 0.5 }}
+                />
+              </Grid.Column>
+              <Grid.Column>
+                <Image
+                  src={bossFight}
+                  size="tiny"
+                  onClick={() => props.setInputPriority(3)}
+                  className="invert"
+                  style={{ opacity: props.inputPriority === 3 ? 1 : 0.5 }}
+                />
+              </Grid.Column>
+            </Grid.Row>
+          </Grid>
         </Form>
       </Modal.Content>
       <Modal.Actions>
