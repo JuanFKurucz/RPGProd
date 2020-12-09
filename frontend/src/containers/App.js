@@ -42,6 +42,7 @@ const getProfile = () =>
     level: 1,
     levelPure: 1,
     xp: 0,
+    budget: 0,
     stats: {
       strength: 0,
       speed: 0,
@@ -60,6 +61,17 @@ const App = () => {
   const [inputCategoryName, setInputCategoryName] = useState("");
   const [inputStatus, setInputStatus] = useState("idle");
   const [inputPriority, setInputPriority] = useState(1);
+  const [inputSkill, setInputSkill] = useState([]);
+
+  const toggleInputSkill = (skill) => {
+    let newSkills = [];
+    if (inputSkill.indexOf(skill) !== -1) {
+      newSkills = inputSkill.filter((element) => element !== skill);
+    } else {
+      newSkills = [...inputSkill, skill];
+    }
+    setInputSkill(newSkills);
+  };
 
   const saveTasks = (newTasks) => {
     saveToLocalStorage("tasks", newTasks);
@@ -82,6 +94,7 @@ const App = () => {
       startedAt: Date.now(),
       completedAt: null,
       priority: inputPriority,
+      rewards: inputSkill,
     });
     saveTasks(newTasks);
     toggleTaskModal();
@@ -93,6 +106,7 @@ const App = () => {
     setInputCategoryName("");
     setInputStatus("idle");
     setInputPriority(1);
+    setInputSkill([]);
     setModalState({
       type: modalState.open ? "CLOSE_MODAL" : "OPEN_MODAL",
       dimmer: "blurring",
@@ -115,6 +129,9 @@ const App = () => {
     newProfile.xp += Math.floor(Math.random() * 10) * newTasks[index].priority;
     newProfile.levelPure += newProfile.xp / (120 * newProfile.level);
     newProfile.level = Math.floor(newProfile.levelPure);
+    for (let skill in newTasks[index].rewards) {
+      newProfile.stats[newTasks[index].rewards[skill]]++;
+    }
     saveProfile(newProfile);
   };
 
@@ -147,6 +164,8 @@ const App = () => {
                 setInputStatus={setInputStatus}
                 inputPriority={inputPriority}
                 setInputPriority={setInputPriority}
+                inputSkill={inputSkill}
+                toggleInputSkill={toggleInputSkill}
               />
               <Tasks
                 taskList={tasks}

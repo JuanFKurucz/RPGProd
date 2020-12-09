@@ -1,7 +1,11 @@
 import React from "react";
 
 const Budget = (props) => {
-  return <div className="centerText profileComponent">Budget: $1</div>;
+  return (
+    <div className="centerText profileComponent">
+      Budget: ${props.profile.budget}
+    </div>
+  );
 };
 
 export default Budget;

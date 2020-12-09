@@ -5,8 +5,18 @@ const Stats = (props) => {
   return (
     <div className="centerText profileComponent">
       Stats
-      <div className="text-center">Stat name 1 50%</div>
-      <Progress percent={50} progress color="brown" />
+      {Object.keys(props.profile.stats).map((stat) => (
+        <>
+          <div className="text-center categoryName">
+            {stat} Level: {Math.floor(props.profile.stats[stat] / 5)}
+          </div>
+          <Progress
+            percent={(props.profile.stats[stat] % 5) * 20}
+            progress
+            color="brown"
+          />
+        </>
+      ))}
     </div>
   );
 };
