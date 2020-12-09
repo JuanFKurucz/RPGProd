@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import { Button, Modal, Form, Image, Grid } from "semantic-ui-react";
 
@@ -33,12 +33,17 @@ const AddTask = (props) => {
     setInputSkill(newSkills);
   };
 
+  useEffect(() => {
+    if (props.open) {
+      cleanStates();
+    }
+  }, [props.open]);
+
   return (
     <Modal
       dimmer={props.dimmer}
       open={props.open}
       onClose={() => {
-        cleanStates();
         props.toggleTaskModal();
       }}
     >
@@ -133,7 +138,6 @@ const AddTask = (props) => {
         <Button
           negative
           onClick={() => {
-            cleanStates();
             props.toggleTaskModal();
           }}
         >
