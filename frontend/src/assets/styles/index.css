@@ -1,35 +1,22 @@
+section {
+  color: black;
+  font-weight: bold;
+  height: 200%;
+  padding: 1vh 1vw 1vh 1vw;
+  position: relative;
+  overflow-y: scroll;
+}
+
 * {
   box-sizing: border-box;
-  overflow-y: hidden;
 }
+
 body {
   margin: 0;
   background-color: black;
 }
 
-.containerWeb {
-  display: flex;
-  justify-content: center;
-}
-
-aside,
-section,
-header {
-  border: 1px solid rgba(0, 0, 0, 0.2);
-}
-
-.side {
-  width: 20%;
-  height: 95vh;
-}
-
-.page {
-  width: 100%;
-  height: 95vh;
-}
-
 .tasks {
-  overflow-y: scroll;
   height: 95vh;
 }
 
@@ -93,7 +80,7 @@ header {
 .bottomNavbar {
   width: 100%;
   position: fixed;
-  bottom: -10px;
+  bottom: 0px;
   background: #212531;
 }
 .bottomNavbar button {
@@ -106,54 +93,6 @@ header {
 .taskcompleted {
   background-color: grey;
   text-decoration-line: line-through;
-}
-
-section {
-  color: black;
-  font-weight: bold;
-  height: 90vh;
-  padding: 1vh 1vw 1vh 1vw;
-  position: relative;
-}
-
-header {
-  top: 0;
-  left: 0;
-  position: sticky;
-  padding: 0;
-  margin: 0;
-  width: 100vw;
-  overflow: hidden;
-}
-
-header ul {
-  list-style: none;
-  margin: auto;
-  padding: 0;
-  background-color: #333;
-}
-
-header li {
-  float: left;
-  padding: 3vh 3vw 3vh 3vw;
-  margin-left: 1vw;
-  font-size: 5vw;
-}
-
-header li a {
-  color: white;
-  text-decoration: none;
-}
-
-header li a:hover {
-  background-color: #111;
-  text-decoration: none;
-  color: white;
-}
-header li a:active {
-  background-color: #111;
-  text-decoration: none;
-  color: white;
 }
 
 .content {
@@ -172,4 +111,7 @@ i.icon {
 
 .tasks .column {
   overflow: hidden;
+}
+
+.ui.grid {
 }

@@ -14,9 +14,9 @@ const rewards = {
 const Task = (props) => {
   return (
     <div className={"centerText taskComponent task" + props.data.status}>
-      <Grid centered container>
-        <Grid.Row centered columns={2}>
-          <Grid.Column width={9}>
+      <Grid centered container={false}>
+        <Grid.Row centered columns={2} container={false}>
+          <Grid.Column width={9} style={{ paddingLeft: "-5px" }}>
             {props.data.rewards &&
               props.data.rewards.map((x) => (
                 <Image
