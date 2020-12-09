@@ -189,4 +189,4 @@ class MarkovChain {
   }
 }
 
-module.exports = MarkovChain;
+export default MarkovChain;
