@@ -1,5 +1,6 @@
 import React from "react";
 import Column from "./Column";
+import { Grid } from "semantic-ui-react";
 
 const prioritiesNames = {
   1: "Side quest",
@@ -14,16 +15,28 @@ const Tasks = (props) => {
   return (
     <section>
       <div className="tasks">
-        {priorities.map((x) => (
-          <Column
-            key={x}
-            name={prioritiesNames[x]}
-            taskList={tasks.filter((y) => y.priority === x)}
-            deleteTask={props.deleteTask}
-            completeTask={props.completeTask}
-            changeStatusTask={props.changeStatusTask}
-          />
-        ))}
+        <Grid>
+          <Grid.Row
+            centered
+            columns={3}
+            container={false}
+            textAlign="center"
+            verticalAlign="top"
+          >
+            {priorities.map((x) => (
+              <Grid.Column computer={5} mobile={16}>
+                <Column
+                  key={x}
+                  name={prioritiesNames[x]}
+                  taskList={tasks.filter((y) => y.priority === x)}
+                  deleteTask={props.deleteTask}
+                  completeTask={props.completeTask}
+                  changeStatusTask={props.changeStatusTask}
+                />
+              </Grid.Column>
+            ))}
+          </Grid.Row>
+        </Grid>
       </div>
     </section>
   );

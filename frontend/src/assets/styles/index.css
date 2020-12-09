@@ -35,8 +35,6 @@ body {
 }
 
 .taskColumn {
-  display: inline-block;
-  width: 95vw;
   margin-bottom: 3vw;
   padding-bottom: 3vw;
   border-color: black;
