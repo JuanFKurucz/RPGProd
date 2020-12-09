@@ -1,11 +1,9 @@
 import React, { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-import Markov from "../utils/markov";
-import quests from "../assets/config/quests.json";
 
 import Profile from "../components/profile";
 import Tasks from "../components/tasks";
-import AddTask from "../components/tasks/AddTask";
+import AddTask from "./AddTask";
 import Footer from "../components/footer";
 import Navbar from "../components/navbar";
 
@@ -57,21 +55,6 @@ const App = () => {
     open: false,
     dimmer: undefined,
   });
-  const [inputTaskName, setInputTaskName] = useState("");
-  const [inputCategoryName, setInputCategoryName] = useState("");
-  const [inputStatus, setInputStatus] = useState("idle");
-  const [inputPriority, setInputPriority] = useState(1);
-  const [inputSkill, setInputSkill] = useState([]);
-
-  const toggleInputSkill = (skill) => {
-    let newSkills = [];
-    if (inputSkill.indexOf(skill) !== -1) {
-      newSkills = inputSkill.filter((element) => element !== skill);
-    } else {
-      newSkills = [...inputSkill, skill];
-    }
-    setInputSkill(newSkills);
-  };
 
   const saveTasks = (newTasks) => {
     saveToLocalStorage("tasks", newTasks);
@@ -83,14 +66,14 @@ const App = () => {
     setProfile(newProfile);
   };
 
-  const addTask = () => {
+  const addTask = (inputTaskName, inputPriority, inputSkill) => {
     const newTasks = [...tasks];
     const id = uuidv4();
     newTasks.push({
       id,
       name: inputTaskName,
-      category: inputCategoryName || "global",
-      status: inputStatus || "idle",
+      category: "global",
+      status: "idle",
       startedAt: Date.now(),
       completedAt: null,
       priority: inputPriority,
@@ -101,12 +84,6 @@ const App = () => {
   };
 
   const toggleTaskModal = () => {
-    const taskName = new Markov(2, quests).generateSentence(7);
-    setInputTaskName(taskName);
-    setInputCategoryName("");
-    setInputStatus("idle");
-    setInputPriority(1);
-    setInputSkill([]);
     setModalState({
       type: modalState.open ? "CLOSE_MODAL" : "OPEN_MODAL",
       dimmer: "blurring",
@@ -155,17 +132,7 @@ const App = () => {
                 open={modalState.open}
                 dimmer={modalState.dimmer}
                 toggleTaskModal={toggleTaskModal}
-                inputTaskName={inputTaskName}
-                setInputTaskName={setInputTaskName}
                 addTask={addTask}
-                inputCategoryName={inputCategoryName}
-                setInputCategoryName={setInputCategoryName}
-                inputStatus={inputStatus}
-                setInputStatus={setInputStatus}
-                inputPriority={inputPriority}
-                setInputPriority={setInputPriority}
-                inputSkill={inputSkill}
-                toggleInputSkill={toggleInputSkill}
               />
               <Tasks
                 taskList={tasks}
