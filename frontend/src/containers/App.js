@@ -150,7 +150,7 @@ const App = () => {
         </header>
         <div className="content">
           <Switch>
-            <Route path="/quests">
+            <Route path="/RPGProd/quests">
               <AddTask
                 open={modalState.open}
                 dimmer={modalState.dimmer}
@@ -177,7 +177,7 @@ const App = () => {
                 <Footer toggleTaskModal={toggleTaskModal} />
               </div>
             </Route>
-            <Route path="/">
+            <Route path="/RPGProd">
               <Profile profile={profile} />
             </Route>
           </Switch>

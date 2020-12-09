@@ -5,19 +5,19 @@ import { Link } from "react-router-dom";
 const Navbar = (props) => (
   <Segment inverted>
     <Menu inverted pointing secondary>
-      <Link to="/">
+      <Link to="/RPGProd/">
         <Menu.Item name="profile" active={props.activeItem === "profile"} />
       </Link>
-      <Link to="/quests">
+      <Link to="/RPGProd/quests">
         <Menu.Item name="quests" active={props.activeItem === "quests"} />
       </Link>
-      <Link to="/proficiency">
+      <Link to="/RPGProd/proficiency">
         <Menu.Item
           name="proficiency"
           active={props.activeItem === "proficiency"}
         />
       </Link>
-      <Link to="/budget">
+      <Link to="/RPGProd/budget">
         <Menu.Item name="budget" active={props.activeItem === "budget"} />
       </Link>
     </Menu>
