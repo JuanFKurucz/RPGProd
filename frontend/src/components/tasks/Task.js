@@ -15,8 +15,19 @@ const Task = (props) => {
   return (
     <div className={"centerText taskComponent task" + props.data.status}>
       <Grid centered container={false}>
-        <Grid.Row centered columns={2} container={false}>
-          <Grid.Column width={9} style={{ paddingLeft: "-5px" }}>
+        <Grid.Row
+          centered
+          columns={3}
+          container={false}
+          textAlign="center"
+          verticalAlign="middle"
+        >
+          <Grid.Column
+            centered
+            computer={1}
+            mobile={3}
+            className="gridColumnTask"
+          >
             {props.data.rewards &&
               props.data.rewards.map((x) => (
                 <Image
@@ -25,15 +36,17 @@ const Task = (props) => {
                   size="mini"
                   className="invert"
                   inline
-                  style={{ width: "5vw" }}
+                  style={{ width: "2em" }}
                 />
               ))}
+          </Grid.Column>
+          <Grid.Column computer={8} mobile={7} className="gridColumnTask">
             {props.category && (
               <span className="categoryName">{props.category}</span>
             )}
             {props.data.name}
           </Grid.Column>
-          <Grid.Column width={7}>
+          <Grid.Column width={5} className="gridColumnTask">
             <Grid centered container>
               <Grid.Row centered columns={3}>
                 {props.data.status !== "completed" && (
