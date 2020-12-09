@@ -37,7 +37,10 @@ const AddTask = (props) => {
     <Modal
       dimmer={props.dimmer}
       open={props.open}
-      onClose={() => cleanStates() && props.toggleTaskModal()}
+      onClose={() => {
+        cleanStates();
+        props.toggleTaskModal();
+      }}
     >
       <Modal.Header className="centerText">Add quest</Modal.Header>
       <Modal.Content>
@@ -129,7 +132,10 @@ const AddTask = (props) => {
       <Modal.Actions>
         <Button
           negative
-          onClick={() => cleanStates() && props.toggleTaskModal()}
+          onClick={() => {
+            cleanStates();
+            props.toggleTaskModal();
+          }}
         >
           Close
         </Button>
