@@ -103,15 +103,17 @@ i.icon {
   height: auto;
 }
 
+.taskSkillImage {
+  display: block;
+  margin: auto;
+}
+
 .invert {
   filter: invert(100%);
 }
 
 .tasks .column {
   overflow: hidden;
-}
-
-.ui.grid {
 }
 
 .tasks {

@@ -10,17 +10,20 @@ import bossFight from "../assets/img/evil-minion.png";
 import strength from "../assets/img/weight-lifting-up.png";
 import speed from "../assets/img/speedometer.png";
 import intelligence from "../assets/img/artificial-intelligence.png";
+import proficiencies from "../assets/img/proficiencies/";
 
 const AddTask = (props) => {
   const [inputTaskName, setInputTaskName] = useState("");
   const [inputPriority, setInputPriority] = useState(1);
   const [inputSkill, setInputSkill] = useState([]);
+  const [inputProficiency, setInputProficiency] = useState([]);
 
   const cleanStates = () => {
     const taskName = new Markov(2, quests).generateSentence(7);
     setInputTaskName(taskName);
     setInputPriority(1);
     setInputSkill([]);
+    setInputProficiency([]);
   };
 
   const toggleInputSkill = (skill) => {
@@ -31,6 +34,15 @@ const AddTask = (props) => {
       newSkills = [...inputSkill, skill];
     }
     setInputSkill(newSkills);
+  };
+  const toggleInputProficiency = (skill) => {
+    let newSkills = [];
+    if (inputProficiency.indexOf(skill) !== -1) {
+      newSkills = inputProficiency.filter((element) => element !== skill);
+    } else {
+      newSkills = [...inputProficiency, skill];
+    }
+    setInputProficiency(newSkills);
   };
 
   useEffect(() => {
@@ -69,7 +81,7 @@ const AddTask = (props) => {
                   src={sideQuest}
                   size="tiny"
                   onClick={() => setInputPriority(1)}
-                  className="invert"
+                  className="taskSkillImage invert"
                   style={{ opacity: inputPriority === 1 ? 1 : 0.5 }}
                 />
               </Grid.Column>
@@ -78,7 +90,7 @@ const AddTask = (props) => {
                   src={quest}
                   size="tiny"
                   onClick={() => setInputPriority(2)}
-                  className="invert"
+                  className="taskSkillImage invert"
                   style={{ opacity: inputPriority === 2 ? 1 : 0.5 }}
                 />
               </Grid.Column>
@@ -87,7 +99,7 @@ const AddTask = (props) => {
                   src={bossFight}
                   size="tiny"
                   onClick={() => setInputPriority(3)}
-                  className="invert"
+                  className="taskSkillImage invert"
                   style={{ opacity: inputPriority === 3 ? 1 : 0.5 }}
                 />
               </Grid.Column>
@@ -101,7 +113,7 @@ const AddTask = (props) => {
                   src={strength}
                   size="tiny"
                   onClick={() => toggleInputSkill("strength")}
-                  className="invert"
+                  className="taskSkillImage invert"
                   style={{
                     opacity: inputSkill.indexOf("strength") !== -1 ? 1 : 0.5,
                   }}
@@ -112,7 +124,7 @@ const AddTask = (props) => {
                   src={speed}
                   size="tiny"
                   onClick={() => toggleInputSkill("speed")}
-                  className="invert"
+                  className="taskSkillImage invert"
                   style={{
                     opacity: inputSkill.indexOf("speed") !== -1 ? 1 : 0.5,
                   }}
@@ -123,13 +135,36 @@ const AddTask = (props) => {
                   src={intelligence}
                   size="tiny"
                   onClick={() => toggleInputSkill("intelligence")}
-                  className="invert"
+                  className="taskSkillImage invert"
                   style={{
                     opacity:
                       inputSkill.indexOf("intelligence") !== -1 ? 1 : 0.5,
                   }}
                 />
               </Grid.Column>
+            </Grid.Row>
+            <Grid.Row centered columns={3}>
+              Quest proficiencies
+            </Grid.Row>
+            <Grid.Row centered columns={3}>
+              {proficiencies &&
+                Object.keys(proficiencies).map((image) => {
+                  return (
+                    <Grid.Column centered key={image}>
+                      <Image
+                        key={image}
+                        src={proficiencies[image]}
+                        size="tiny"
+                        onClick={() => toggleInputProficiency(image)}
+                        className="taskSkillImage"
+                        style={{
+                          opacity:
+                            inputProficiency.indexOf(image) !== -1 ? 1 : 0.5,
+                        }}
+                      />
+                    </Grid.Column>
+                  );
+                })}
             </Grid.Row>
           </Grid>
         </Form>
@@ -146,7 +181,12 @@ const AddTask = (props) => {
         <Button
           positive
           onClick={() =>
-            props.addTask(inputTaskName, inputPriority, inputSkill)
+            props.addTask(
+              inputTaskName,
+              inputPriority,
+              inputSkill,
+              inputProficiency
+            )
           }
         >
           Add quest

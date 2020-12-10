@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 
 import Profile from "../components/profile";
+import Proficiency from "../components/proficiency";
 import Tasks from "../components/tasks";
 import AddTask from "./AddTask";
 import Footer from "../components/footer";
@@ -46,6 +47,7 @@ const getProfile = () =>
       speed: 0,
       intelligence: 0,
     },
+    proficiencies: {},
   });
 
 const App = () => {
@@ -66,7 +68,12 @@ const App = () => {
     setProfile(newProfile);
   };
 
-  const addTask = (inputTaskName, inputPriority, inputSkill) => {
+  const addTask = (
+    inputTaskName,
+    inputPriority,
+    inputSkill,
+    inputProficiency
+  ) => {
     const newTasks = [...tasks];
     const id = uuidv4();
     newTasks.push({
@@ -78,6 +85,7 @@ const App = () => {
       completedAt: null,
       priority: inputPriority,
       rewards: inputSkill,
+      proficiencies: inputProficiency,
     });
     saveTasks(newTasks);
     toggleTaskModal();
@@ -108,6 +116,15 @@ const App = () => {
     newProfile.level = Math.floor(newProfile.levelPure);
     for (let skill in newTasks[index].rewards) {
       newProfile.stats[newTasks[index].rewards[skill]]++;
+    }
+    if (!("proficiencies" in newProfile)) {
+      newProfile.proficiencies = {};
+    }
+    for (let prof in newTasks[index].proficiencies) {
+      if (!(newTasks[index].proficiencies[prof] in newProfile.proficiencies)) {
+        newProfile.proficiencies[newTasks[index].proficiencies[prof]] = 0;
+      }
+      newProfile.proficiencies[newTasks[index].proficiencies[prof]]++;
     }
     saveProfile(newProfile);
   };
@@ -143,6 +160,9 @@ const App = () => {
               <div className="bottomNavbar">
                 <Footer toggleTaskModal={toggleTaskModal} />
               </div>
+            </Route>
+            <Route path="/RPGProd/proficiency">
+              <Proficiency profile={profile} />
             </Route>
             <Route path="/RPGProd">
               <Profile profile={profile} />

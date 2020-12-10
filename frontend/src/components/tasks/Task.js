@@ -4,6 +4,7 @@ import { Icon, Image, Grid } from "semantic-ui-react";
 import strength from "../../assets/img/weight-lifting-up.png";
 import speed from "../../assets/img/speedometer.png";
 import intelligence from "../../assets/img/artificial-intelligence.png";
+import proficiencies from "../../assets/img/proficiencies/";
 
 const rewards = {
   strength: strength,
@@ -24,7 +25,7 @@ const Task = (props) => {
         >
           <Grid.Column
             centered
-            computer={1}
+            computer={3}
             mobile={3}
             className="gridColumnTask"
           >
@@ -39,8 +40,18 @@ const Task = (props) => {
                   style={{ width: "2em" }}
                 />
               ))}
+            {props.data.proficiencies &&
+              props.data.proficiencies.map((x) => (
+                <Image
+                  verticalAlign="middle"
+                  src={proficiencies[x]}
+                  size="mini"
+                  inline
+                  style={{ width: "2em" }}
+                />
+              ))}
           </Grid.Column>
-          <Grid.Column computer={8} mobile={7} className="gridColumnTask">
+          <Grid.Column computer={7} mobile={7} className="gridColumnTask">
             {props.category && (
               <span className="categoryName">{props.category}</span>
             )}

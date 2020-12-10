@@ -18,7 +18,7 @@ const Profile = (props) => {
             <Budget profile={props.profile} />
           </Grid.Column>
           <Grid.Column computer={5} mobile={16}>
-            <Stats profile={props.profile} />
+            <Stats name="Stats" stats={props.profile.stats} />
           </Grid.Column>
         </Grid.Row>
       </Grid>
