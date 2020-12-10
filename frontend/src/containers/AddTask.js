@@ -146,7 +146,7 @@ const AddTask = (props) => {
             <Grid.Row centered columns={3}>
               Quest proficiencies
             </Grid.Row>
-            <Grid.Row centered columns={3}>
+            <Grid.Row centered columns={4}>
               {proficiencies &&
                 Object.keys(proficiencies).map((image) => {
                   return (
