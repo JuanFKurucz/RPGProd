@@ -132,38 +132,34 @@ const App = () => {
 
   return (
     <HashRouter basename="/">
-      <div>
-        <header>
-          <Navbar />
-        </header>
-        <div className="content">
-          <Switch>
-            <Route path="/quests">
-              <AddTask
-                open={modalState.open}
-                dimmer={modalState.dimmer}
-                toggleTaskModal={toggleTaskModal}
-                addTask={addTask}
-              />
-              <Tasks
-                taskList={tasks}
-                deleteTask={deleteTask}
-                completeTask={completeTask}
-                changeStatusTask={changeStatusTask}
-              />
-              <div className="bottomNavbar">
-                <Footer toggleTaskModal={toggleTaskModal} />
-              </div>
-            </Route>
-            <Route path="/proficiency">
-              <Proficiency profile={profile} />
-            </Route>
-            <Route path="/">
-              <Profile profile={profile} />
-            </Route>
-          </Switch>
-        </div>
-      </div>
+      <header>
+        <Navbar />
+      </header>
+      <Switch>
+        <Route path="/quests">
+          <AddTask
+            open={modalState.open}
+            dimmer={modalState.dimmer}
+            toggleTaskModal={toggleTaskModal}
+            addTask={addTask}
+          />
+          <Tasks
+            taskList={tasks}
+            deleteTask={deleteTask}
+            completeTask={completeTask}
+            changeStatusTask={changeStatusTask}
+          />
+          <div className="bottomNavbar">
+            <Footer toggleTaskModal={toggleTaskModal} />
+          </div>
+        </Route>
+        <Route path="/proficiency">
+          <Proficiency profile={profile} />
+        </Route>
+        <Route path="/">
+          <Profile profile={profile} />
+        </Route>
+      </Switch>
     </HashRouter>
   );
 };

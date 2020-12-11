@@ -12,6 +12,8 @@ section {
 
 body {
   margin: 0;
+  background: url('../img/background.png');
+  background-size: cover;
   background-color: black;
 }
 
@@ -89,13 +91,6 @@ body {
 .taskcompleted {
   background-color: grey;
   text-decoration-line: line-through;
-}
-
-.content {
-  position: relative;
-  overflow: hidden;
-  background: url('../img/background.png');
-  background-size: cover;
 }
 
 i.icon {
