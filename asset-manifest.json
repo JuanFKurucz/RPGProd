@@ -1,0 +1,41 @@
+{
+  "files": {
+    "main.css": "/RPGProd/static/css/main.e418b56a.chunk.css",
+    "main.js": "/RPGProd/static/js/main.713ca842.chunk.js",
+    "main.js.map": "/RPGProd/static/js/main.713ca842.chunk.js.map",
+    "runtime-main.js": "/RPGProd/static/js/runtime-main.00a4a216.js",
+    "runtime-main.js.map": "/RPGProd/static/js/runtime-main.00a4a216.js.map",
+    "static/css/2.27ea870c.chunk.css": "/RPGProd/static/css/2.27ea870c.chunk.css",
+    "static/js/2.6aafeca4.chunk.js": "/RPGProd/static/js/2.6aafeca4.chunk.js",
+    "static/js/2.6aafeca4.chunk.js.map": "/RPGProd/static/js/2.6aafeca4.chunk.js.map",
+    "static/js/3.d885af93.chunk.js": "/RPGProd/static/js/3.d885af93.chunk.js",
+    "static/js/3.d885af93.chunk.js.map": "/RPGProd/static/js/3.d885af93.chunk.js.map",
+    "index.html": "/RPGProd/index.html",
+    "static/css/2.27ea870c.chunk.css.map": "/RPGProd/static/css/2.27ea870c.chunk.css.map",
+    "static/css/main.e418b56a.chunk.css.map": "/RPGProd/static/css/main.e418b56a.chunk.css.map",
+    "static/js/2.6aafeca4.chunk.js.LICENSE.txt": "/RPGProd/static/js/2.6aafeca4.chunk.js.LICENSE.txt",
+    "static/media/art.e031e195.png": "/RPGProd/static/media/art.e031e195.png",
+    "static/media/artificial-intelligence.470883d7.png": "/RPGProd/static/media/artificial-intelligence.470883d7.png",
+    "static/media/astronomy.9de823b6.png": "/RPGProd/static/media/astronomy.9de823b6.png",
+    "static/media/index.css": "/RPGProd/static/media/background.133e433d.png",
+    "static/media/semantic.min.css": "/RPGProd/static/media/outline-icons.ddae9b1b.woff",
+    "static/media/cad.25f45ea4.png": "/RPGProd/static/media/cad.25f45ea4.png",
+    "static/media/cooking.a9d4d0f5.png": "/RPGProd/static/media/cooking.a9d4d0f5.png",
+    "static/media/crafting.c79b1266.png": "/RPGProd/static/media/crafting.c79b1266.png",
+    "static/media/evil-minion.b7e8bae2.png": "/RPGProd/static/media/evil-minion.b7e8bae2.png",
+    "static/media/reading.0ccffc52.png": "/RPGProd/static/media/reading.0ccffc52.png",
+    "static/media/speedometer.34169805.png": "/RPGProd/static/media/speedometer.34169805.png",
+    "static/media/study.7a781a29.png": "/RPGProd/static/media/study.7a781a29.png",
+    "static/media/treasure-map.f8e3cf39.png": "/RPGProd/static/media/treasure-map.f8e3cf39.png",
+    "static/media/two-coins.7996ead5.png": "/RPGProd/static/media/two-coins.7996ead5.png",
+    "static/media/weight-lifting-up.9247417f.png": "/RPGProd/static/media/weight-lifting-up.9247417f.png",
+    "static/media/working_out.e37e6624.png": "/RPGProd/static/media/working_out.e37e6624.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.00a4a216.js",
+    "static/css/2.27ea870c.chunk.css",
+    "static/js/2.6aafeca4.chunk.js",
+    "static/css/main.e418b56a.chunk.css",
+    "static/js/main.713ca842.chunk.js"
+  ]
+}
