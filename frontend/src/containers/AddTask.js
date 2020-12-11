@@ -51,6 +51,10 @@ const AddTask = (props) => {
     }
   }, [props.open]);
 
+  const preventDragHandler = (e) => {
+    e.preventDefault();
+  };
+
   return (
     <Modal
       dimmer={props.dimmer}
@@ -83,6 +87,7 @@ const AddTask = (props) => {
                   onClick={() => setInputPriority(1)}
                   className="taskSkillImage invert"
                   style={{ opacity: inputPriority === 1 ? 1 : 0.5 }}
+                  onDragStart={preventDragHandler}
                 />
               </Grid.Column>
               <Grid.Column>
@@ -92,6 +97,7 @@ const AddTask = (props) => {
                   onClick={() => setInputPriority(2)}
                   className="taskSkillImage invert"
                   style={{ opacity: inputPriority === 2 ? 1 : 0.5 }}
+                  onDragStart={preventDragHandler}
                 />
               </Grid.Column>
               <Grid.Column>
@@ -101,6 +107,7 @@ const AddTask = (props) => {
                   onClick={() => setInputPriority(3)}
                   className="taskSkillImage invert"
                   style={{ opacity: inputPriority === 3 ? 1 : 0.5 }}
+                  onDragStart={preventDragHandler}
                 />
               </Grid.Column>
             </Grid.Row>
@@ -117,6 +124,7 @@ const AddTask = (props) => {
                   style={{
                     opacity: inputSkill.indexOf("strength") !== -1 ? 1 : 0.5,
                   }}
+                  onDragStart={preventDragHandler}
                 />
               </Grid.Column>
               <Grid.Column>
@@ -128,6 +136,7 @@ const AddTask = (props) => {
                   style={{
                     opacity: inputSkill.indexOf("speed") !== -1 ? 1 : 0.5,
                   }}
+                  onDragStart={preventDragHandler}
                 />
               </Grid.Column>
               <Grid.Column>
@@ -140,6 +149,7 @@ const AddTask = (props) => {
                     opacity:
                       inputSkill.indexOf("intelligence") !== -1 ? 1 : 0.5,
                   }}
+                  onDragStart={preventDragHandler}
                 />
               </Grid.Column>
             </Grid.Row>
@@ -156,11 +166,12 @@ const AddTask = (props) => {
                         src={proficiencies[image]}
                         size="tiny"
                         onClick={() => toggleInputProficiency(image)}
-                        className="taskSkillImage"
+                        className="taskSkillImage taskSkillProficiency"
                         style={{
                           opacity:
                             inputProficiency.indexOf(image) !== -1 ? 1 : 0.5,
                         }}
+                        onDragStart={preventDragHandler}
                       />
                     </Grid.Column>
                   );
