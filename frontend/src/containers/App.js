@@ -8,12 +8,7 @@ import AddTask from "./AddTask";
 import Footer from "../components/footer";
 import Navbar from "../components/navbar";
 
-import {
-  HashRouter,
-  BrowserRouter as Router,
-  Switch,
-  Route,
-} from "react-router-dom";
+import { HashRouter, Switch, Route } from "react-router-dom";
 
 const getFromLocalStorage = (key, defaultValue) => {
   let storage = JSON.parse(localStorage.getItem(key));
