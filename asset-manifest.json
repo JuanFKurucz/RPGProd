@@ -1,19 +1,17 @@
 {
   "files": {
     "main.css": "/RPGProd/static/css/main.7804058f.chunk.css",
-    "main.js": "/RPGProd/static/js/main.066219e9.chunk.js",
-    "main.js.map": "/RPGProd/static/js/main.066219e9.chunk.js.map",
-    "runtime-main.js": "/RPGProd/static/js/runtime-main.00a4a216.js",
-    "runtime-main.js.map": "/RPGProd/static/js/runtime-main.00a4a216.js.map",
+    "main.js": "/RPGProd/static/js/main.32526ece.chunk.js",
+    "main.js.map": "/RPGProd/static/js/main.32526ece.chunk.js.map",
+    "runtime-main.js": "/RPGProd/static/js/runtime-main.061c59de.js",
+    "runtime-main.js.map": "/RPGProd/static/js/runtime-main.061c59de.js.map",
     "static/css/2.27ea870c.chunk.css": "/RPGProd/static/css/2.27ea870c.chunk.css",
-    "static/js/2.faf98ecd.chunk.js": "/RPGProd/static/js/2.faf98ecd.chunk.js",
-    "static/js/2.faf98ecd.chunk.js.map": "/RPGProd/static/js/2.faf98ecd.chunk.js.map",
-    "static/js/3.d885af93.chunk.js": "/RPGProd/static/js/3.d885af93.chunk.js",
-    "static/js/3.d885af93.chunk.js.map": "/RPGProd/static/js/3.d885af93.chunk.js.map",
+    "static/js/2.bdfab892.chunk.js": "/RPGProd/static/js/2.bdfab892.chunk.js",
+    "static/js/2.bdfab892.chunk.js.map": "/RPGProd/static/js/2.bdfab892.chunk.js.map",
     "index.html": "/RPGProd/index.html",
     "static/css/2.27ea870c.chunk.css.map": "/RPGProd/static/css/2.27ea870c.chunk.css.map",
     "static/css/main.7804058f.chunk.css.map": "/RPGProd/static/css/main.7804058f.chunk.css.map",
-    "static/js/2.faf98ecd.chunk.js.LICENSE.txt": "/RPGProd/static/js/2.faf98ecd.chunk.js.LICENSE.txt",
+    "static/js/2.bdfab892.chunk.js.LICENSE.txt": "/RPGProd/static/js/2.bdfab892.chunk.js.LICENSE.txt",
     "static/media/art.e031e195.png": "/RPGProd/static/media/art.e031e195.png",
     "static/media/artificial-intelligence.470883d7.png": "/RPGProd/static/media/artificial-intelligence.470883d7.png",
     "static/media/astronomy.9de823b6.png": "/RPGProd/static/media/astronomy.9de823b6.png",
@@ -32,10 +30,10 @@
     "static/media/working_out.e37e6624.png": "/RPGProd/static/media/working_out.e37e6624.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.00a4a216.js",
+    "static/js/runtime-main.061c59de.js",
     "static/css/2.27ea870c.chunk.css",
-    "static/js/2.faf98ecd.chunk.js",
+    "static/js/2.bdfab892.chunk.js",
     "static/css/main.7804058f.chunk.css",
-    "static/js/main.066219e9.chunk.js"
+    "static/js/main.32526ece.chunk.js"
   ]
 }
