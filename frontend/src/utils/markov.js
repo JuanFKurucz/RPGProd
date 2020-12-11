@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 // define some sentence separators
 const seps = /[.!?;:]/;
 
@@ -49,10 +51,10 @@ class MarkovChain {
   addSentence(string) {
     // split the passed sentence into words and filter out excess spaces/empty slots
     const words = string
-      .split(" ")
+      .split(' ')
       .filter((s) => s !== "'")
-      .filter((s) => s !== " ")
-      .filter((s) => s !== "");
+      .filter((s) => s !== ' ')
+      .filter((s) => s !== '');
 
     /**
      * Initialise a buffer. This buffer will be moved along the sentence kind
@@ -104,10 +106,7 @@ class MarkovChain {
 
     while (!done) {
       // Pick the two most recent words
-      const words = [
-        sentence[sentence.length - 2],
-        sentence[sentence.length - 1],
-      ];
+      const words = [sentence[sentence.length - 2], sentence[sentence.length - 1]];
 
       // Grab the next word following the previous two
       const nextWord = this.nextWordFor(words);
@@ -125,7 +124,7 @@ class MarkovChain {
     }
 
     // Return the completed sentence.
-    return sentence.join(" ");
+    return sentence.join(' ');
   }
 
   /**
@@ -152,13 +151,13 @@ class MarkovChain {
   addText(text) {
     const sentences = String(text)
       // strip newlines
-      .replace(/\n/g, " ")
-      .replace(/<[^>]*>?/gm, "")
-      .replace(/(?:https?|ftp):\/\/[\n\S]+/g, "")
+      .replace(/\n/g, ' ')
+      .replace(/<[^>]*>?/gm, '')
+      .replace(/(?:https?|ftp):\/\/[\n\S]+/g, '')
       // split into sentences
       .split(seps)
       // filter out empty strings
-      .filter((e) => e !== "");
+      .filter((e) => e !== '');
     for (let sentence of sentences) {
       this.addSentence(sentence);
     }

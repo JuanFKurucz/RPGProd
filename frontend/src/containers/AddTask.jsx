@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
+import PropTypes from 'prop-types';
 
 import { Button, Modal, Form, Image, Grid } from "semantic-ui-react";
 
-import Markov from "../utils/markov";
 import quests from "../assets/config/quests.json";
 import sideQuest from "../assets/img/two-coins.png";
 import quest from "../assets/img/treasure-map.png";
@@ -10,9 +10,11 @@ import bossFight from "../assets/img/evil-minion.png";
 import strength from "../assets/img/weight-lifting-up.png";
 import speed from "../assets/img/speedometer.png";
 import intelligence from "../assets/img/artificial-intelligence.png";
-import proficiencies from "../assets/img/proficiencies/";
+import proficiencies from "../assets/img/proficiencies";
+import Markov from "../utils/markov";
 
-const AddTask = (props) => {
+
+const AddTask = ({open,dimmer,toggleTaskModal,addTask}) => {
   const [inputTaskName, setInputTaskName] = useState("");
   const [inputPriority, setInputPriority] = useState(1);
   const [inputSkill, setInputSkill] = useState([]);
@@ -46,10 +48,10 @@ const AddTask = (props) => {
   };
 
   useEffect(() => {
-    if (props.open) {
+    if (open) {
       cleanStates();
     }
-  }, [props.open]);
+  }, [open]);
 
   const preventDragHandler = (e) => {
     e.preventDefault();
@@ -57,10 +59,10 @@ const AddTask = (props) => {
 
   return (
     <Modal
-      dimmer={props.dimmer}
-      open={props.open}
+      dimmer={dimmer}
+      open={open}
       onClose={() => {
-        props.toggleTaskModal();
+        toggleTaskModal();
       }}
     >
       <Modal.Header className="centerText">Add quest</Modal.Header>
@@ -158,24 +160,23 @@ const AddTask = (props) => {
             </Grid.Row>
             <Grid.Row centered columns={4}>
               {proficiencies &&
-                Object.keys(proficiencies).map((image) => {
-                  return (
-                    <Grid.Column centered key={image}>
-                      <Image
-                        key={image}
-                        src={proficiencies[image]}
-                        size="tiny"
-                        onClick={() => toggleInputProficiency(image)}
-                        className="taskSkillImage taskSkillProficiency"
-                        style={{
-                          opacity:
-                            inputProficiency.indexOf(image) !== -1 ? 1 : 0.5,
-                        }}
-                        onDragStart={preventDragHandler}
-                      />
-                    </Grid.Column>
-                  );
-                })}
+                Object.keys(proficiencies).map((image) => (
+                  <Grid.Column centered key={image}>
+                    <Image
+                      key={image}
+                      src={proficiencies[image]}
+                      size="tiny"
+                      onClick={() => toggleInputProficiency(image)}
+                      className="taskSkillImage taskSkillProficiency"
+                      style={{
+                        opacity:
+                          inputProficiency.indexOf(image) !== -1 ? 1 : 0.5,
+                      }}
+                      onDragStart={preventDragHandler}
+                    />
+                  </Grid.Column>
+                  )
+                )}
             </Grid.Row>
           </Grid>
         </Form>
@@ -184,7 +185,7 @@ const AddTask = (props) => {
         <Button
           negative
           onClick={() => {
-            props.toggleTaskModal();
+            toggleTaskModal();
           }}
         >
           Close
@@ -192,13 +193,12 @@ const AddTask = (props) => {
         <Button
           positive
           onClick={() =>
-            props.addTask(
+            addTask(
               inputTaskName,
               inputPriority,
               inputSkill,
               inputProficiency
-            )
-          }
+            )}
         >
           Add quest
         </Button>
@@ -206,5 +206,13 @@ const AddTask = (props) => {
     </Modal>
   );
 };
+
+AddTask.propTypes = {
+  open: PropTypes.bool.isRequired,
+  dimmer: PropTypes.bool.isRequired,
+  toggleTaskModal: PropTypes.func.isRequired,
+  addTask: PropTypes.func.isRequired,
+}
+
 
 export default AddTask;

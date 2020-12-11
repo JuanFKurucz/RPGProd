@@ -1,6 +1,9 @@
 import React from "react";
-import Column from "./Column";
+import PropTypes from 'prop-types';
+
 import { Grid } from "semantic-ui-react";
+
+import Column from "./Column";
 
 const prioritiesNames = {
   1: "Side quest",
@@ -8,8 +11,8 @@ const prioritiesNames = {
   3: "Boss fight",
 };
 
-const Tasks = (props) => {
-  const tasks = props.taskList.filter((y) => y.status !== "completed");
+const Tasks = ({taskList,deleteTask,completeTask,changeStatusTask}) => {
+  const tasks = taskList.filter((y) => y.status !== "completed");
   const priorities = [...new Set(tasks.map((x) => x.priority))];
   priorities.sort((a, b) => b - a);
   return (
@@ -29,9 +32,9 @@ const Tasks = (props) => {
                   key={x}
                   name={prioritiesNames[x]}
                   taskList={tasks.filter((y) => y.priority === x)}
-                  deleteTask={props.deleteTask}
-                  completeTask={props.completeTask}
-                  changeStatusTask={props.changeStatusTask}
+                  deleteTask={deleteTask}
+                  completeTask={completeTask}
+                  changeStatusTask={changeStatusTask}
                 />
               </Grid.Column>
             ))}
@@ -41,5 +44,12 @@ const Tasks = (props) => {
     </section>
   );
 };
+
+Tasks.propTypes = {
+  taskList: PropTypes.arrayOf(PropTypes.object).isRequired,
+  deleteTask: PropTypes.func.isRequired,
+  completeTask: PropTypes.func.isRequired,
+  changeStatusTask: PropTypes.func.isRequired,
+}
 
 export default Tasks;
