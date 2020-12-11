@@ -64,9 +64,13 @@ const AddTask = ({open,dimmer,toggleTaskModal,addTask}) => {
       onClose={() => {
         toggleTaskModal();
       }}
+      size="mini"
+      basic
+      centered
+      style={{marginTop:0,marginBottom:0}}
     >
-      <Modal.Header className="centerText">Add quest</Modal.Header>
       <Modal.Content>
+        <h2 className="centerText">Add quest</h2>
         <Form>
           <Grid centered columns={1} container>
             <Grid.Row centered columns={3}>
@@ -80,14 +84,13 @@ const AddTask = ({open,dimmer,toggleTaskModal,addTask}) => {
             </Grid.Row>
             <Grid.Row centered columns={3}>
               Quest Type
-            </Grid.Row>
-            <Grid.Row centered columns={3}>
+              <br />
               <Grid.Column>
                 <Image
                   src={sideQuest}
                   size="tiny"
                   onClick={() => setInputPriority(1)}
-                  className="taskSkillImage invert"
+                  className="taskSkillImage"
                   style={{ opacity: inputPriority === 1 ? 1 : 0.5 }}
                   onDragStart={preventDragHandler}
                 />
@@ -97,7 +100,7 @@ const AddTask = ({open,dimmer,toggleTaskModal,addTask}) => {
                   src={quest}
                   size="tiny"
                   onClick={() => setInputPriority(2)}
-                  className="taskSkillImage invert"
+                  className="taskSkillImage"
                   style={{ opacity: inputPriority === 2 ? 1 : 0.5 }}
                   onDragStart={preventDragHandler}
                 />
@@ -107,7 +110,7 @@ const AddTask = ({open,dimmer,toggleTaskModal,addTask}) => {
                   src={bossFight}
                   size="tiny"
                   onClick={() => setInputPriority(3)}
-                  className="taskSkillImage invert"
+                  className="taskSkillImage"
                   style={{ opacity: inputPriority === 3 ? 1 : 0.5 }}
                   onDragStart={preventDragHandler}
                 />
@@ -115,14 +118,13 @@ const AddTask = ({open,dimmer,toggleTaskModal,addTask}) => {
             </Grid.Row>
             <Grid.Row centered columns={3}>
               Quest rewards
-            </Grid.Row>
-            <Grid.Row centered columns={3}>
+              <br />
               <Grid.Column>
                 <Image
                   src={strength}
                   size="tiny"
                   onClick={() => toggleInputSkill("strength")}
-                  className="taskSkillImage invert"
+                  className="taskSkillImage"
                   style={{
                     opacity: inputSkill.indexOf("strength") !== -1 ? 1 : 0.5,
                   }}
@@ -134,7 +136,7 @@ const AddTask = ({open,dimmer,toggleTaskModal,addTask}) => {
                   src={speed}
                   size="tiny"
                   onClick={() => toggleInputSkill("speed")}
-                  className="taskSkillImage invert"
+                  className="taskSkillImage"
                   style={{
                     opacity: inputSkill.indexOf("speed") !== -1 ? 1 : 0.5,
                   }}
@@ -146,7 +148,7 @@ const AddTask = ({open,dimmer,toggleTaskModal,addTask}) => {
                   src={intelligence}
                   size="tiny"
                   onClick={() => toggleInputSkill("intelligence")}
-                  className="taskSkillImage invert"
+                  className="taskSkillImage"
                   style={{
                     opacity:
                       inputSkill.indexOf("intelligence") !== -1 ? 1 : 0.5,
@@ -155,10 +157,9 @@ const AddTask = ({open,dimmer,toggleTaskModal,addTask}) => {
                 />
               </Grid.Column>
             </Grid.Row>
-            <Grid.Row centered columns={3}>
-              Quest proficiencies
-            </Grid.Row>
             <Grid.Row centered columns={4}>
+              Quest proficiencies
+              <br />
               {proficiencies &&
                 Object.keys(proficiencies).map((image) => (
                   <Grid.Column centered key={image}>
@@ -179,30 +180,36 @@ const AddTask = ({open,dimmer,toggleTaskModal,addTask}) => {
                 )}
             </Grid.Row>
           </Grid>
+          <Modal.Actions>
+            <Grid.Row centered columns={3}>
+              <Grid.Column centered style={{textAlign:"center",marginLeft:"2vw",marginRight:"2vw"}}>
+                <Button
+                  negative
+                  onClick={() => {
+                    toggleTaskModal();
+                  }}
+                  style={{float:"left"}}
+                >
+                  Close
+                </Button>
+                <Button
+                  positive
+                  onClick={() =>
+                    addTask(
+                      inputTaskName,
+                      inputPriority,
+                      inputSkill,
+                      inputProficiency
+                    )}
+                  style={{float:"right"}}
+                >
+                  Add quest
+                </Button>
+              </Grid.Column>
+            </Grid.Row>
+          </Modal.Actions>
         </Form>
       </Modal.Content>
-      <Modal.Actions>
-        <Button
-          negative
-          onClick={() => {
-            toggleTaskModal();
-          }}
-        >
-          Close
-        </Button>
-        <Button
-          positive
-          onClick={() =>
-            addTask(
-              inputTaskName,
-              inputPriority,
-              inputSkill,
-              inputProficiency
-            )}
-        >
-          Add quest
-        </Button>
-      </Modal.Actions>
     </Modal>
   );
 };
