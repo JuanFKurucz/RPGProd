@@ -12,13 +12,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - run: cd frontend
+      - run: cd frontend && npm i
         shell: bash
-      - run: npm i
+      - run: cd frontend && npm ci
         shell: bash
-      - run: npm ci
-        shell: bash
-      - run: npm run build
+      - run: cd frontend && npm run build
         shell: bash
       - name: Deploy
         if: success()
