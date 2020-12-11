@@ -20,7 +20,7 @@ jobs:
         shell: bash
       - name: Deploy
         if: success()
-        uses: Cecilapp/GitHub-Pages-deploy@3.0.0
+        uses: Cecilapp/GitHub-Pages-deploy@3
         env:
           EMAIL: juanfkurucz@gmail.com
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
