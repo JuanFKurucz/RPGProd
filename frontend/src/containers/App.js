@@ -8,7 +8,12 @@ import AddTask from "./AddTask";
 import Footer from "../components/footer";
 import Navbar from "../components/navbar";
 
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import {
+  HashRouter,
+  BrowserRouter as Router,
+  Switch,
+  Route,
+} from "react-router-dom";
 
 const getFromLocalStorage = (key, defaultValue) => {
   let storage = JSON.parse(localStorage.getItem(key));
@@ -137,14 +142,14 @@ const App = () => {
   };
 
   return (
-    <Router>
+    <HashRouter basename="/">
       <div>
         <header>
           <Navbar />
         </header>
         <div className="content">
           <Switch>
-            <Route path="/RPGProd/quests">
+            <Route path="/quests">
               <AddTask
                 open={modalState.open}
                 dimmer={modalState.dimmer}
@@ -161,16 +166,16 @@ const App = () => {
                 <Footer toggleTaskModal={toggleTaskModal} />
               </div>
             </Route>
-            <Route path="/RPGProd/proficiency">
+            <Route path="/proficiency">
               <Proficiency profile={profile} />
             </Route>
-            <Route path="/RPGProd">
+            <Route path="/">
               <Profile profile={profile} />
             </Route>
           </Switch>
         </div>
       </div>
-    </Router>
+    </HashRouter>
   );
 };
 
