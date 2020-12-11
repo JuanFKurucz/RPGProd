@@ -23,5 +23,5 @@ jobs:
         uses: Cecilapp/GitHub-Pages-deploy@3.0.0
         env:
           EMAIL: juanfkurucz@gmail.com
-          GH_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BUILD_DIR: frontend/build/
