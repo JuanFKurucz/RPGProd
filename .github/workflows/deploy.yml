@@ -3,28 +3,27 @@ name: GitHub Pages deploy
 on:
   push:
     branches:
-    - master
+      - master
 
 jobs:
   checkout-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout
-      uses: actions/checkout@v2
-    - name: Build
-    - run : cd frontend
-      shell: bash
-    - run : npm i
-      shell: bash
-    - run : npm ci
-      shell: bash
-    - run : npm run build
-      shell: bash
-    - name: Deploy
-      if: success()
-      uses: Cecilapp/GitHub-Pages-deploy@master
-      env:
-        EMAIL: juanfkurucz@gmail.com
-        GH_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-        BUILD_DIR: frontend/build/
+      - name: Checkout
+        uses: actions/checkout@v2
+      - run: cd frontend
+        shell: bash
+      - run: npm i
+        shell: bash
+      - run: npm ci
+        shell: bash
+      - run: npm run build
+        shell: bash
+      - name: Deploy
+        if: success()
+        uses: Cecilapp/GitHub-Pages-deploy@master
+        env:
+          EMAIL: juanfkurucz@gmail.com
+          GH_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          BUILD_DIR: frontend/build/
