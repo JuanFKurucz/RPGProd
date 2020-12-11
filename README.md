@@ -1,3 +1,3 @@
 # RPGProd
 
-![.github/workflows/deploy.yml](https://github.com/JuanFKurucz/RPGProd/workflows/.github/workflows/deploy.yml/badge.svg?branch=main)
+![GitHub Pages deploy](https://github.com/JuanFKurucz/RPGProd/workflows/GitHub%20Pages%20deploy/badge.svg)
