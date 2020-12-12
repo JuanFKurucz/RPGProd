@@ -127,7 +127,10 @@ const App = (): ReactElement => {
   };
 
   const addBudget = (type: string, amount: number) => {
-    const newProfile = { ...profile };
+    let newProfile = { ...profile };
+    if (!('budgetItems' in newProfile)) {
+      newProfile = { ...profile, budgetItems: {} };
+    }
     let close = true;
     if (type) {
       newProfile.budgetItems[type] = { actual: 0, total: amount };
@@ -177,13 +180,17 @@ const App = (): ReactElement => {
     newTasks[currentTaskIndex].status = 'completed';
     saveTasks(newTasks);
 
-    const newProfile = { ...profile };
+    let newProfile = { ...profile };
+    if (!('proficiencies' in newProfile)) {
+      newProfile = { ...profile, proficiencies: {} };
+    }
     newProfile.xp += Math.floor(Math.random() * 10) * newTasks[currentTaskIndex].priority;
     newProfile.levelPure += newProfile.xp / (120 * newProfile.level);
     newProfile.level = Math.floor(newProfile.levelPure);
     newTasks[currentTaskIndex].rewards.forEach((value) => {
       newProfile.stats[value] += 1;
     });
+
     newTasks[currentTaskIndex].proficiencies.forEach((value) => {
       if (!(value in newProfile.proficiencies)) {
         newProfile.proficiencies[value] = 0;
