@@ -3,9 +3,9 @@ import quest from './quest.png';
 import sideQuest from './side_quest.png';
 
 const quests: Record<string, string> = {
-  bossFight,
-  quest,
   sideQuest,
+  quest,
+  bossFight,
 };
 
 export default quests;
