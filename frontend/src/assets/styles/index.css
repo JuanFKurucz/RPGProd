@@ -75,14 +75,12 @@ body {
   text-align: center;
 }
 
-.bottomNavbar {
-  width: 100%;
+.addTaskIcon {
   position: fixed;
-  bottom: 0;
-  background: #212531;
-}
-.bottomNavbar button {
-  width: 100%;
+  bottom: 1.5vh;
+  left: 1.5vw;
+  cursor: pointer;
+  text-shadow: 0 0 10px white;
 }
 
 .taskinprogress {

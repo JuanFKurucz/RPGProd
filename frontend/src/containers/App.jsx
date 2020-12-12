@@ -149,9 +149,7 @@ const App = () => {
             completeTask={completeTask}
             changeStatusTask={changeStatusTask}
           />
-          <div className="bottomNavbar">
-            <Footer toggleTaskModal={toggleTaskModal} />
-          </div>
+          <Footer toggleTaskModal={toggleTaskModal} />
         </Route>
         <Route path="/proficiency">
           <Proficiency profile={profile} />

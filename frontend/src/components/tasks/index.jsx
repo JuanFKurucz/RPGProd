@@ -18,7 +18,7 @@ const Tasks = ({taskList,deleteTask,completeTask,changeStatusTask}) => {
   return (
     <section>
       <div className="tasks">
-        <Grid>
+        <Grid padded="horizontally">
           <Grid.Row
             centered
             columns={3}

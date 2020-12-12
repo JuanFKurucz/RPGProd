@@ -1,12 +1,15 @@
 import React from "react";
 import PropTypes from 'prop-types';
 
-import { Button } from "semantic-ui-react";
+import { Icon } from "semantic-ui-react";
 
 const Footer = ({toggleTaskModal}) => (
-  <Button primary onClick={toggleTaskModal}>
-    Add quest
-  </Button>
+  <Icon
+    name="add circle"
+    onClick={toggleTaskModal}
+    className="addTaskIcon"
+    size="huge"
+  />
 )
 
 Footer.propTypes = {
