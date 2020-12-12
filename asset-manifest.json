@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/RPGProd/static/css/main.d5399d1a.chunk.css",
-    "main.js": "/RPGProd/static/js/main.ccd0c387.chunk.js",
-    "main.js.map": "/RPGProd/static/js/main.ccd0c387.chunk.js.map",
+    "main.js": "/RPGProd/static/js/main.c921df40.chunk.js",
+    "main.js.map": "/RPGProd/static/js/main.c921df40.chunk.js.map",
     "runtime-main.js": "/RPGProd/static/js/runtime-main.061c59de.js",
     "runtime-main.js.map": "/RPGProd/static/js/runtime-main.061c59de.js.map",
     "static/css/2.27ea870c.chunk.css": "/RPGProd/static/css/2.27ea870c.chunk.css",
@@ -34,6 +34,6 @@
     "static/css/2.27ea870c.chunk.css",
     "static/js/2.bdfab892.chunk.js",
     "static/css/main.d5399d1a.chunk.css",
-    "static/js/main.ccd0c387.chunk.js"
+    "static/js/main.c921df40.chunk.js"
   ]
 }
