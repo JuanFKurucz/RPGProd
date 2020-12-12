@@ -18,7 +18,7 @@ const Tasks = ({taskList,deleteTask,completeTask,changeStatusTask}) => {
   return (
     <section>
       <div className="tasks">
-        <Grid padded="horizontally">
+        <Grid style={{margin:0,padding: 0}}>
           <Grid.Row
             centered
             columns={3}
@@ -27,7 +27,7 @@ const Tasks = ({taskList,deleteTask,completeTask,changeStatusTask}) => {
             verticalAlign="top"
           >
             {priorities.map((x) => (
-              <Grid.Column computer={5} mobile={16}>
+              <Grid.Column computer={5} mobile={16} style={{margin:0,padding: 0}}>
                 <Column
                   key={x}
                   name={prioritiesNames[x]}
