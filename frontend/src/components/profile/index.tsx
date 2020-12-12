@@ -4,7 +4,7 @@ import { Grid } from 'semantic-ui-react';
 
 import Player from './Player';
 import Level from './Level';
-import Budget from './Budget';
+import Budget from '../budget/Budget';
 import Stats from './Stats';
 import { ProfileType } from '../../utils/types';
 

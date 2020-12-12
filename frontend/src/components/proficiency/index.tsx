@@ -3,9 +3,10 @@ import React from 'react';
 import { Grid } from 'semantic-ui-react';
 
 import proficiencies from '../../assets/img/proficiencies';
+import { ProfileType } from '../../utils/types';
 import Stats from '../profile/Stats';
 
-type ProficiencyProps = { profile: { proficiencies: Record<string, number> } };
+type ProficiencyProps = { profile: ProfileType };
 
 const Proficiency = ({ profile }: ProficiencyProps): React.ReactElement => (
   <section>

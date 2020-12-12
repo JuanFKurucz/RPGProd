@@ -34,7 +34,7 @@ npm start
 - [x] Profile module
 - [x] Quests module
 - [x] Proficiencies module
-- [ ] Budget module
+- [x] Budget module
 - [ ] Profile personalization
 - [ ] Daily missions
 - [ ] Achivements

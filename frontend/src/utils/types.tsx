@@ -17,6 +17,13 @@ export type ProfileType = {
   levelPure: number;
   xp: number;
   budget: number;
+  budgetItems: Record<
+    string,
+    {
+      actual: number;
+      total: number;
+    }
+  >;
   stats: Record<string, number>;
   proficiencies: Record<string, number>;
 };

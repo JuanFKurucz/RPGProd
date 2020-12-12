@@ -12,7 +12,7 @@ const Stats = ({ name, stats, images = {} }: StatsProps): React.ReactElement => 
   <div className="centerText profileComponent">
     {name}
     {Object.keys(stats).map((stat) => (
-      <Stat key={stat} name={stat} number={stats[stat]} image={images[stat]} />
+      <Stat key={stat} name={stat} number={stats[stat]} image={images[stat]} total={5} />
     ))}
   </div>
 );

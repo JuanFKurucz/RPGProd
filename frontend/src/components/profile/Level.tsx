@@ -16,7 +16,12 @@ const Level = ({ profile }: LevelProps): React.ReactElement => (
       Level:
       {profile.level}
     </div>
-    <Progress percent={Math.round((profile.levelPure % 1) * 100)} progress color="brown" />
+    <Progress
+      percent={Math.round((profile.levelPure % 1) * 100)}
+      total={5}
+      progress
+      color="brown"
+    />
   </div>
 );
 

@@ -4,8 +4,11 @@ import { v4 as uuidv4 } from 'uuid';
 
 import Profile from '../components/profile';
 import Proficiency from '../components/proficiency';
+import Budget from '../components/budget';
 import Tasks from '../components/tasks';
 import AddTask from './AddTask';
+import AddBudget from './AddBudget';
+import AssignBudget from './AssignBudget';
 import Footer from '../components/footer';
 import Navbar from '../components/navbar';
 import { TaskType, ProfileType } from '../utils/types';
@@ -20,14 +23,14 @@ const saveToLocalStorage = (key: string, data: unknown) => {
 };
 
 const modalReducer: Reducer<
-  { open: boolean; dimmer?: string },
-  { type: string; dimmer?: string }
+  { open: boolean; dimmer?: string; item?: string },
+  { type: string; dimmer?: string; item?: string }
 > = (_state, action) => {
   switch (action.type) {
     case 'OPEN_MODAL':
-      return { open: true, dimmer: action.dimmer };
+      return { open: true, dimmer: action.dimmer, item: action.item };
     case 'CLOSE_MODAL':
-      return { open: false };
+      return { open: false, item: action.item };
     default:
       throw new Error();
   }
@@ -42,6 +45,7 @@ const getProfile = () =>
     levelPure: 1,
     xp: 0,
     budget: 0,
+    budgetItems: {},
     stats: {
       strength: 0,
       speed: 0,
@@ -56,6 +60,15 @@ const App = (): ReactElement => {
   const [modalState, setModalState] = React.useReducer(modalReducer, {
     open: false,
     dimmer: undefined,
+  });
+  const [budgetModalState, setBudgetModalState] = React.useReducer(modalReducer, {
+    open: false,
+    dimmer: undefined,
+  });
+  const [assignBudgetModalState, setAssignBudgetModalState] = React.useReducer(modalReducer, {
+    open: false,
+    dimmer: undefined,
+    item: undefined,
   });
 
   const saveTasks = (newTasks: TaskType[]) => {
@@ -72,6 +85,21 @@ const App = (): ReactElement => {
     setModalState({
       type: modalState.open ? 'CLOSE_MODAL' : 'OPEN_MODAL',
       dimmer: 'blurring',
+    });
+  };
+
+  const toggleBudgetModal = () => {
+    setBudgetModalState({
+      type: budgetModalState.open ? 'CLOSE_MODAL' : 'OPEN_MODAL',
+      dimmer: 'blurring',
+    });
+  };
+
+  const toggleAssignBudgetModal = (item = '') => {
+    setAssignBudgetModalState({
+      type: assignBudgetModalState.open ? 'CLOSE_MODAL' : 'OPEN_MODAL',
+      dimmer: 'blurring',
+      item,
     });
   };
 
@@ -96,6 +124,45 @@ const App = (): ReactElement => {
     });
     saveTasks(newTasks);
     toggleTaskModal();
+  };
+
+  const addBudget = (type: string, amount: number) => {
+    const newProfile = { ...profile };
+    let close = true;
+    if (type) {
+      newProfile.budgetItems[type] = { actual: 0, total: amount };
+    } else {
+      const newProfileBudget = newProfile.budget + amount;
+      if (newProfileBudget >= 0) {
+        newProfile.budget += amount;
+      } else {
+        close = false;
+      }
+    }
+    if (close) {
+      saveProfile(newProfile);
+      toggleBudgetModal();
+    }
+  };
+
+  const assignBudget = (type: string, amount: number) => {
+    if (type) {
+      const newProfile = { ...profile };
+      const newProfileBudget = newProfile.budget + amount;
+      const newProfileBudgetType = newProfile.budgetItems[type].actual + amount;
+      if (newProfileBudget >= 0 && newProfileBudgetType >= 0) {
+        newProfile.budget -= amount;
+        newProfile.budgetItems[type].actual += amount;
+        saveProfile(newProfile);
+        toggleAssignBudgetModal();
+      }
+    }
+  };
+
+  const deleteBudgetType = (item: string) => {
+    const newProfile = { ...profile };
+    delete newProfile.budgetItems[item];
+    saveProfile(newProfile);
   };
 
   const deleteTask = (id: string) => {
@@ -156,6 +223,27 @@ const App = (): ReactElement => {
         </Route>
         <Route path="/proficiency">
           <Proficiency profile={profile} />
+        </Route>
+        <Route path="/budget">
+          <AddBudget
+            open={budgetModalState.open}
+            dimmer={budgetModalState.dimmer}
+            toggleTaskModal={toggleBudgetModal}
+            addBudget={addBudget}
+          />
+          <AssignBudget
+            open={assignBudgetModalState.open}
+            dimmer={assignBudgetModalState.dimmer}
+            toggleTaskModal={toggleAssignBudgetModal}
+            budgetType={assignBudgetModalState.item}
+            assignBudget={assignBudget}
+          />
+          <Budget
+            profile={profile}
+            toggleAssignBudgetModal={toggleAssignBudgetModal}
+            deleteBudgetType={deleteBudgetType}
+          />
+          {!budgetModalState.open && <Footer toggleTaskModal={toggleBudgetModal} />}
         </Route>
         <Route path="/">
           <Profile profile={profile} />
