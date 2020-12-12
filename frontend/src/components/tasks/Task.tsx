@@ -5,14 +5,19 @@ import { Icon, Image, Grid } from 'semantic-ui-react';
 import skills from '../../assets/img/skills';
 import proficiencies from '../../assets/img/proficiencies';
 
-import { TaskType } from '../../utils/types';
+import {
+  TaskType,
+  DeleteTaskType,
+  CompleteTaskType,
+  ChangeStatusTaskType,
+} from '../../utils/types';
 
 type TaskProps = {
   data: TaskType;
   category?: string;
-  deleteTask: (id: string) => void;
-  completeTask: (id: string) => void;
-  changeStatusTask: (id: string, status: string) => void;
+  deleteTask: DeleteTaskType;
+  completeTask: CompleteTaskType;
+  changeStatusTask: ChangeStatusTaskType;
 };
 
 const Task = ({

@@ -1,6 +1,8 @@
 import React from 'react';
 
-type PlayerProps = { profile: { name: string; avatar: string } };
+import { ProfileType } from '../../utils/types';
+
+type PlayerProps = { profile: ProfileType };
 
 const Player = ({ profile }: PlayerProps): React.ReactElement => (
   <div className="centerText">

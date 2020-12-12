@@ -1,6 +1,8 @@
 import React from 'react';
 
-type BudgetProps = { profile: { budget: number } };
+import { ProfileType } from '../../utils/types';
+
+type BudgetProps = { profile: ProfileType };
 
 const Budget = ({ profile }: BudgetProps): React.ReactElement => (
   <div className="centerText profileComponent">Budget: ${profile.budget || 0}</div>

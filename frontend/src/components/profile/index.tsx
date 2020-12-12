@@ -6,19 +6,10 @@ import Player from './Player';
 import Level from './Level';
 import Budget from './Budget';
 import Stats from './Stats';
+import { ProfileType } from '../../utils/types';
 
 type ProfileProps = {
-  profile: {
-    proficiencies: Record<string, number>;
-    budget: number;
-    xp: number;
-    level: number;
-    levelPure: number;
-    avatar: string;
-    name: string;
-    stats: Record<string, number>;
-    images?: Record<string, string>;
-  };
+  profile: ProfileType;
 };
 
 const Profile = ({ profile }: ProfileProps): React.ReactElement => (

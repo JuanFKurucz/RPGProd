@@ -20,3 +20,9 @@ export type ProfileType = {
   stats: Record<string, number>;
   proficiencies: Record<string, number>;
 };
+
+export type DeleteTaskType = (id: string) => void;
+
+export type CompleteTaskType = (id: string) => void;
+
+export type ChangeStatusTaskType = (id: string, status: string) => void;

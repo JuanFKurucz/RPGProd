@@ -2,14 +2,19 @@ import React from 'react';
 
 import { Grid } from 'semantic-ui-react';
 
-import { TaskType } from '../../utils/types';
+import {
+  TaskType,
+  DeleteTaskType,
+  CompleteTaskType,
+  ChangeStatusTaskType,
+} from '../../utils/types';
 import Column from './Column';
 
 type TasksProps = {
   taskList: Array<TaskType>;
-  deleteTask: (id: string) => void;
-  completeTask: (id: string) => void;
-  changeStatusTask: (id: string, status: string) => void;
+  deleteTask: DeleteTaskType;
+  completeTask: CompleteTaskType;
+  changeStatusTask: ChangeStatusTaskType;
 };
 
 const prioritiesNames: Record<number, string> = {

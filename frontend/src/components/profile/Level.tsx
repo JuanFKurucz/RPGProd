@@ -2,7 +2,9 @@ import React from 'react';
 
 import { Progress } from 'semantic-ui-react';
 
-type LevelProps = { profile: { xp: number; level: number; levelPure: number } };
+import { ProfileType } from '../../utils/types';
+
+type LevelProps = { profile: ProfileType };
 
 const Level = ({ profile }: LevelProps): React.ReactElement => (
   <div className="centerText profileComponent">
