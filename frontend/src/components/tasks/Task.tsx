@@ -1,87 +1,83 @@
-import React from "react";
-import PropTypes from 'prop-types';
+import React from 'react';
 
-import { Icon, Image, Grid } from "semantic-ui-react";
+import { Icon, Image, Grid } from 'semantic-ui-react';
 
-import strength from "../../assets/img/weight-lifting-up.png";
-import speed from "../../assets/img/speedometer.png";
-import intelligence from "../../assets/img/artificial-intelligence.png";
-import proficiencies from "../../assets/img/proficiencies";
+import skills from '../../assets/img/skills';
+import proficiencies from '../../assets/img/proficiencies';
 
-const rewards = {
-  strength,
-  speed,
-  intelligence,
+import { TaskType } from '../../utils/types';
+
+type TaskProps = {
+  data: TaskType;
+  category?: string;
+  deleteTask: (id: string) => void;
+  completeTask: (id: string) => void;
+  changeStatusTask: (id: string, status: string) => void;
 };
 
-const Task = ({data,category,deleteTask,completeTask,changeStatusTask}) => (
+const Task = ({
+  data,
+  category = '',
+  deleteTask,
+  completeTask,
+  changeStatusTask,
+}: TaskProps): React.ReactElement => (
   <div className={`centerText taskComponent task${data.status}`}>
-    <Grid centered container={false}>
-      <Grid.Row
-        centered
-        columns={3}
-        container={false}
-        textAlign="center"
-        verticalAlign="middle"
-      >
-        <Grid.Column
-          centered
-          computer={3}
-          mobile={3}
-          className="gridColumnTask"
-        >
+    <Grid centered>
+      <Grid.Row centered columns={3} textAlign="center" verticalAlign="middle">
+        <Grid.Column centered computer={3} mobile={3} className="gridColumnTask">
           {data.rewards &&
             data.rewards.map((x) => (
               <Image
+                key={x}
                 verticalAlign="middle"
-                src={rewards[x]}
+                src={skills[x]}
                 size="mini"
                 className="invert"
                 inline
-                style={{ width: "2em" }}
+                style={{ width: '2em' }}
               />
             ))}
           {data.proficiencies &&
             data.proficiencies.map((x) => (
               <Image
+                key={x}
                 verticalAlign="middle"
                 src={proficiencies[x]}
                 size="mini"
                 inline
-                style={{ width: "2em" }}
+                style={{ width: '2em' }}
               />
             ))}
         </Grid.Column>
         <Grid.Column computer={7} mobile={7} className="gridColumnTask">
-          {category && (
-            <span className="categoryName">{category}</span>
-          )}
+          {category && <span className="categoryName">{category}</span>}
           {data.name}
         </Grid.Column>
         <Grid.Column width={5} className="gridColumnTask">
           <Grid centered container>
             <Grid.Row centered columns={3}>
-              {data.status !== "completed" && (
+              {data.status !== 'completed' && (
                 <Grid.Column>
-                  {data.status !== "idle" && (
+                  {data.status !== 'idle' && (
                     <Icon
                       name="pause"
                       onClick={() => {
-                        changeStatusTask(data.id, "idle");
+                        changeStatusTask(data.id, 'idle');
                       }}
                     />
                   )}
-                  {data.status === "idle" && (
+                  {data.status === 'idle' && (
                     <Icon
                       name="play"
                       onClick={() => {
-                        changeStatusTask(data.id, "inprogress");
+                        changeStatusTask(data.id, 'inprogress');
                       }}
                     />
                   )}
                 </Grid.Column>
               )}
-              {data.status !== "completed" && (
+              {data.status !== 'completed' && (
                 <Grid.Column>
                   <Icon
                     name="check"
@@ -106,23 +102,5 @@ const Task = ({data,category,deleteTask,completeTask,changeStatusTask}) => (
     </Grid>
   </div>
 );
-
-Task.propTypes = {
-  category: PropTypes.string,
-  data: PropTypes.shape({
-    id:PropTypes.string,
-    name:PropTypes.string,
-    status:PropTypes.string,
-    rewards:PropTypes.arrayOf(PropTypes.string),
-    proficiencies:PropTypes.arrayOf(PropTypes.string)
-  }).isRequired,
-  deleteTask: PropTypes.func.isRequired,
-  completeTask: PropTypes.func.isRequired,
-  changeStatusTask: PropTypes.func.isRequired,
-}
-
-Task.defaultProps = {
-  category:""
-}
 
 export default Task;

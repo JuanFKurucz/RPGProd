@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, Reducer, ReactElement } from 'react';
 import { HashRouter, Switch, Route } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -8,20 +8,21 @@ import Tasks from '../components/tasks';
 import AddTask from './AddTask';
 import Footer from '../components/footer';
 import Navbar from '../components/navbar';
+import { TaskType, ProfileType } from '../utils/types';
 
-const getFromLocalStorage = (key, defaultValue) => {
-  let storage = JSON.parse(localStorage.getItem(key));
-  if (!storage) {
-    storage = defaultValue;
-  }
-  return storage;
+const getFromLocalStorage = (key: string, defaultValue: unknown) => {
+  const localStorageValue = localStorage.getItem(key);
+  return localStorageValue ? JSON.parse(localStorageValue) : defaultValue;
 };
 
-const saveToLocalStorage = (key, data) => {
+const saveToLocalStorage = (key: string, data: unknown) => {
   localStorage.setItem(key, JSON.stringify(data));
 };
 
-const modalReducer = (state, action) => {
+const modalReducer: Reducer<
+  { open: boolean; dimmer?: string },
+  { type: string; dimmer?: string }
+> = (_state, action) => {
   switch (action.type) {
     case 'OPEN_MODAL':
       return { open: true, dimmer: action.dimmer };
@@ -30,7 +31,7 @@ const modalReducer = (state, action) => {
     default:
       throw new Error();
   }
-}
+};
 
 const getTasks = () => getFromLocalStorage('tasks', []);
 const getProfile = () =>
@@ -49,20 +50,20 @@ const getProfile = () =>
     proficiencies: {},
   });
 
-const App = () => {
-  const [profile, setProfile] = useState(getProfile());
-  const [tasks, setTasks] = useState(getTasks());
+const App = (): ReactElement => {
+  const [profile, setProfile] = useState<ProfileType>(getProfile());
+  const [tasks, setTasks] = useState<TaskType[]>(getTasks());
   const [modalState, setModalState] = React.useReducer(modalReducer, {
     open: false,
     dimmer: undefined,
   });
 
-  const saveTasks = (newTasks) => {
+  const saveTasks = (newTasks: TaskType[]) => {
     saveToLocalStorage('tasks', newTasks);
     setTasks(newTasks);
   };
 
-  const saveProfile = (newProfile) => {
+  const saveProfile = (newProfile: ProfileType) => {
     saveToLocalStorage('profile', newProfile);
     setProfile(newProfile);
   };
@@ -74,7 +75,12 @@ const App = () => {
     });
   };
 
-  const addTask = (inputTaskName, inputPriority, inputSkill, inputProficiency) => {
+  const addTask = (
+    inputTaskName: string,
+    inputPriority: number,
+    inputSkill: string[],
+    inputProficiency: string[]
+  ) => {
     const newTasks = [...tasks];
     const id = uuidv4();
     newTasks.push({
@@ -83,7 +89,7 @@ const App = () => {
       category: 'global',
       status: 'idle',
       startedAt: Date.now(),
-      completedAt: null,
+      completedAt: undefined,
       priority: inputPriority,
       rewards: inputSkill,
       proficiencies: inputProficiency,
@@ -92,38 +98,35 @@ const App = () => {
     toggleTaskModal();
   };
 
-  const deleteTask = (id) => {
+  const deleteTask = (id: string) => {
     const newTasks = tasks.filter((element) => element.id !== id);
     saveTasks(newTasks);
   };
 
-  const completeTask = (id) => {
+  const completeTask = (id: string) => {
     const newTasks = [...tasks];
-    const index = newTasks.findIndex((obj) => obj.id === id);
-    newTasks[index].completedAt = Date.now();
-    newTasks[index].status = 'completed';
+    const currentTaskIndex = newTasks.findIndex((obj) => obj.id === id);
+    newTasks[currentTaskIndex].completedAt = Date.now();
+    newTasks[currentTaskIndex].status = 'completed';
     saveTasks(newTasks);
 
     const newProfile = { ...profile };
-    newProfile.xp += Math.floor(Math.random() * 10) * newTasks[index].priority;
+    newProfile.xp += Math.floor(Math.random() * 10) * newTasks[currentTaskIndex].priority;
     newProfile.levelPure += newProfile.xp / (120 * newProfile.level);
     newProfile.level = Math.floor(newProfile.levelPure);
-    Object.keys(newTasks[index].rewards).forEach((skill) => {
-      newProfile.stats[newTasks[index].rewards[skill]] += 1;
-    })
-    if (!('proficiencies' in newProfile)) {
-      newProfile.proficiencies = {};
-    }
-    Object.keys(newTasks[index].proficiencies).forEach((prof) => {
-      if (!(newTasks[index].proficiencies[prof] in newProfile.proficiencies)) {
-          newProfile.proficiencies[newTasks[index].proficiencies[prof]] = 0;
+    newTasks[currentTaskIndex].rewards.forEach((value) => {
+      newProfile.stats[value] += 1;
+    });
+    newTasks[currentTaskIndex].proficiencies.forEach((value) => {
+      if (!(value in newProfile.proficiencies)) {
+        newProfile.proficiencies[value] = 0;
       }
-      newProfile.proficiencies[newTasks[index].proficiencies[prof]] += 1;
-    })
+      newProfile.proficiencies[value] += 1;
+    });
     saveProfile(newProfile);
   };
 
-  const changeStatusTask = (id, status) => {
+  const changeStatusTask = (id: string, status: string) => {
     const newTasks = [...tasks];
     const index = newTasks.findIndex((obj) => obj.id === id);
     newTasks[index].status = status;

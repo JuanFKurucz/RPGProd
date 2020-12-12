@@ -7,7 +7,7 @@ import reading from './reading.png';
 import study from './study.png';
 import workingOut from './working_out.png';
 
-const proficiencies = {
+const proficiencies: Record<string, string> = {
   art,
   astronomy,
   cad,
