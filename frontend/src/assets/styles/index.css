@@ -78,7 +78,7 @@ body {
 .addTaskIcon {
   position: fixed;
   bottom: 1.5vh;
-  left: 1.5vw;
+  right: 1.5vw;
   cursor: pointer;
   text-shadow: 0 0 10px white;
 }
