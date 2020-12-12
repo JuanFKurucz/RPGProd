@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/RPGProd/static/css/main.14affebf.chunk.css",
-    "main.js": "/RPGProd/static/js/main.8a62cf3e.chunk.js",
-    "main.js.map": "/RPGProd/static/js/main.8a62cf3e.chunk.js.map",
+    "main.js": "/RPGProd/static/js/main.8923d1ef.chunk.js",
+    "main.js.map": "/RPGProd/static/js/main.8923d1ef.chunk.js.map",
     "runtime-main.js": "/RPGProd/static/js/runtime-main.061c59de.js",
     "runtime-main.js.map": "/RPGProd/static/js/runtime-main.061c59de.js.map",
     "static/css/2.27ea870c.chunk.css": "/RPGProd/static/css/2.27ea870c.chunk.css",
-    "static/js/2.bdfab892.chunk.js": "/RPGProd/static/js/2.bdfab892.chunk.js",
-    "static/js/2.bdfab892.chunk.js.map": "/RPGProd/static/js/2.bdfab892.chunk.js.map",
+    "static/js/2.1958ccc5.chunk.js": "/RPGProd/static/js/2.1958ccc5.chunk.js",
+    "static/js/2.1958ccc5.chunk.js.map": "/RPGProd/static/js/2.1958ccc5.chunk.js.map",
     "index.html": "/RPGProd/index.html",
     "static/css/2.27ea870c.chunk.css.map": "/RPGProd/static/css/2.27ea870c.chunk.css.map",
     "static/css/main.14affebf.chunk.css.map": "/RPGProd/static/css/main.14affebf.chunk.css.map",
-    "static/js/2.bdfab892.chunk.js.LICENSE.txt": "/RPGProd/static/js/2.bdfab892.chunk.js.LICENSE.txt",
+    "static/js/2.1958ccc5.chunk.js.LICENSE.txt": "/RPGProd/static/js/2.1958ccc5.chunk.js.LICENSE.txt",
     "static/media/art.e031e195.png": "/RPGProd/static/media/art.e031e195.png",
     "static/media/astronomy.9de823b6.png": "/RPGProd/static/media/astronomy.9de823b6.png",
     "static/media/index.css": "/RPGProd/static/media/background.133e433d.png",
@@ -32,8 +32,8 @@
   "entrypoints": [
     "static/js/runtime-main.061c59de.js",
     "static/css/2.27ea870c.chunk.css",
-    "static/js/2.bdfab892.chunk.js",
+    "static/js/2.1958ccc5.chunk.js",
     "static/css/main.14affebf.chunk.css",
-    "static/js/main.8a62cf3e.chunk.js"
+    "static/js/main.8923d1ef.chunk.js"
   ]
 }
