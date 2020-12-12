@@ -34,25 +34,27 @@ const Budget = ({
                   total={profile.budgetItems[item].total}
                 />
               </Grid.Column>
+              {profile.budget > 0 && (
+                <Grid.Column
+                  computer={2}
+                  mobile={3}
+                  key={item + 2}
+                  verticalAlign="middle"
+                  style={{ marginTop: '2vh' }}
+                >
+                  <Icon
+                    key={item + 3}
+                    name="money"
+                    onClick={() => {
+                      toggleAssignBudgetModal(item);
+                    }}
+                    size="big"
+                  />
+                </Grid.Column>
+              )}
               <Grid.Column
-                computer={2}
-                mobile={3}
-                key={item + 2}
-                verticalAlign="middle"
-                style={{ marginTop: '2vh' }}
-              >
-                <Icon
-                  key={item + 3}
-                  name="money"
-                  onClick={() => {
-                    toggleAssignBudgetModal(item);
-                  }}
-                  size="big"
-                />
-              </Grid.Column>
-              <Grid.Column
-                computer={2}
-                mobile={3}
+                computer={profile.budget > 0 ? 2 : 4}
+                mobile={profile.budget > 0 ? 3 : 6}
                 key={item + 4}
                 verticalAlign="middle"
                 style={{ marginTop: '2vh' }}

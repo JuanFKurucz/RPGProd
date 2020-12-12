@@ -151,7 +151,7 @@ const App = (): ReactElement => {
   const assignBudget = (type: string, amount: number) => {
     if (type) {
       const newProfile = { ...profile };
-      const newProfileBudget = newProfile.budget + amount;
+      const newProfileBudget = newProfile.budget - amount;
       const newProfileBudgetType = newProfile.budgetItems[type].actual + amount;
       if (newProfileBudget >= 0 && newProfileBudgetType >= 0) {
         newProfile.budget -= amount;
