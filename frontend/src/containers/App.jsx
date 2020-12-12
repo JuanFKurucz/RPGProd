@@ -21,7 +21,7 @@ const saveToLocalStorage = (key, data) => {
   localStorage.setItem(key, JSON.stringify(data));
 };
 
-function modalReducer(state, action) {
+const modalReducer = (state, action) => {
   switch (action.type) {
     case 'OPEN_MODAL':
       return { open: true, dimmer: action.dimmer };
@@ -149,7 +149,7 @@ const App = () => {
             completeTask={completeTask}
             changeStatusTask={changeStatusTask}
           />
-          <Footer toggleTaskModal={toggleTaskModal} />
+          {!modalState.open && <Footer toggleTaskModal={toggleTaskModal} />}
         </Route>
         <Route path="/proficiency">
           <Proficiency profile={profile} />
