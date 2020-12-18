@@ -1,21 +1,25 @@
 import React, { useState, useEffect, ReactElement, ChangeEvent, FocusEvent } from 'react';
 
-import { Button, Modal, Form, Grid } from 'semantic-ui-react';
+import { Button, Modal, Form, Grid, Image } from 'semantic-ui-react';
+
+import budgets from '../assets/img/budgets';
 
 type AddBudgetProps = {
   open: boolean;
   dimmer?: string;
   toggleTaskModal: () => void;
-  addBudget: (type: string, budget: number) => void;
+  addBudget: (type: string, budget: number, budgetType: string) => void;
 };
 
 const AddBudget = ({ open, dimmer, toggleTaskModal, addBudget }: AddBudgetProps): ReactElement => {
   const [inputBudgetType, setInputBudgetType] = useState<string>('');
+  const [inputBudgetName, setInputBudgetName] = useState<string>('');
   const [inputBudget, setInputBudget] = useState<number>(0);
 
   const cleanStates = () => {
     setInputBudget(0);
     setInputBudgetType('');
+    setInputBudgetName('');
   };
 
   useEffect(() => {
@@ -24,6 +28,9 @@ const AddBudget = ({ open, dimmer, toggleTaskModal, addBudget }: AddBudgetProps)
     }
   }, [open]);
 
+  const preventDragHandler = (e: DragEvent) => {
+    e.preventDefault();
+  };
   return (
     <Modal
       dimmer={dimmer}
@@ -40,13 +47,31 @@ const AddBudget = ({ open, dimmer, toggleTaskModal, addBudget }: AddBudgetProps)
         <h2 className="centerText">Add budget</h2>
         <Form>
           <Grid centered columns={1} container>
+            <Grid.Row centered columns={4}>
+              {budgets &&
+                Object.keys(budgets).map((key) => (
+                  <Grid.Column key={key}>
+                    <Image
+                      key={key}
+                      src={budgets[key]}
+                      size="tiny"
+                      onClick={() => setInputBudgetType(key)}
+                      className="taskSkillImage"
+                      style={{
+                        opacity: inputBudgetType === key ? 1 : 0.5,
+                      }}
+                      onDragStart={preventDragHandler}
+                    />
+                  </Grid.Column>
+                ))}
+            </Grid.Row>
             <Grid.Row centered columns={3}>
               <Form.Field
                 control="input"
                 placeholder="Budget type (leave empty for general budget)"
-                value={inputBudgetType}
+                value={inputBudgetName}
                 onChange={(event: ChangeEvent<HTMLInputElement>) =>
-                  setInputBudgetType(event.target.value)
+                  setInputBudgetName(event.target.value)
                 }
                 onFocus={(event: FocusEvent<HTMLInputElement>) => event.target.select()}
               />
@@ -80,7 +105,7 @@ const AddBudget = ({ open, dimmer, toggleTaskModal, addBudget }: AddBudgetProps)
                 </Button>
                 <Button
                   positive
-                  onClick={() => addBudget(inputBudgetType, inputBudget)}
+                  onClick={() => addBudget(inputBudgetName, inputBudget, inputBudgetType)}
                   style={{ float: 'right' }}
                 >
                   Add budget

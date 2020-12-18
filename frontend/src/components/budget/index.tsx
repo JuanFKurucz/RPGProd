@@ -1,7 +1,9 @@
 import React from 'react';
 
-import { Grid, Icon } from 'semantic-ui-react';
+import { Grid, Icon, Image } from 'semantic-ui-react';
 
+import budgets from '../../assets/img/budgets';
+import coin from '../../assets/img/coin.png';
 import { ProfileType } from '../../utils/types';
 import Stat from '../profile/Stat';
 import BudgetDiv from './Budget';
@@ -26,7 +28,15 @@ const Budget = ({
         {profile.budgetItems &&
           Object.keys(profile.budgetItems).map((item) => (
             <React.Fragment key={item + 0}>
-              <Grid.Column computer={12} mobile={10} key={item}>
+              <Grid.Column computer={4} mobile={4} key={`${item}-1`}>
+                <Image
+                  key={`${item}-2`}
+                  src={budgets[profile.budgetItems[item].type || coin]}
+                  size="tiny"
+                  className="taskSkillImage"
+                />
+              </Grid.Column>
+              <Grid.Column computer={10} mobile={8} key={item}>
                 <Stat
                   key={item + 1}
                   name={item}
@@ -36,8 +46,8 @@ const Budget = ({
               </Grid.Column>
               {profile.budget > 0 && (
                 <Grid.Column
-                  computer={2}
-                  mobile={3}
+                  computer={1}
+                  mobile={2}
                   key={item + 2}
                   verticalAlign="middle"
                   style={{ marginTop: '2vh' }}
@@ -53,8 +63,8 @@ const Budget = ({
                 </Grid.Column>
               )}
               <Grid.Column
-                computer={profile.budget > 0 ? 2 : 4}
-                mobile={profile.budget > 0 ? 3 : 6}
+                computer={profile.budget > 0 ? 1 : 2}
+                mobile={profile.budget > 0 ? 2 : 4}
                 key={item + 4}
                 verticalAlign="middle"
                 style={{ marginTop: '2vh' }}

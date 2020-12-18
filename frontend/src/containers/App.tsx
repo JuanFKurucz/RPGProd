@@ -126,14 +126,14 @@ const App = (): ReactElement => {
     toggleTaskModal();
   };
 
-  const addBudget = (type: string, amount: number) => {
+  const addBudget = (type: string, amount: number, budgetType: string) => {
     let newProfile = { ...profile };
     if (!('budgetItems' in newProfile)) {
       newProfile = { ...profile, budgetItems: {} };
     }
     let close = true;
     if (type) {
-      newProfile.budgetItems[type] = { actual: 0, total: amount };
+      newProfile.budgetItems[type] = { actual: 0, total: amount, type: budgetType };
     } else {
       const newProfileBudget = newProfile.budget + amount;
       if (newProfileBudget >= 0) {

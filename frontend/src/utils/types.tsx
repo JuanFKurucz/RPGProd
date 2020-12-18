@@ -22,6 +22,7 @@ export type ProfileType = {
     {
       actual: number;
       total: number;
+      type: string;
     }
   >;
   stats: Record<string, number>;
